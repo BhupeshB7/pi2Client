@@ -100,7 +100,8 @@ const RegisterForm = () => {
     setIsSubmitting(true);
     try {
       const res = await axios.post(
-        "https://mlm-psi.vercel.app/api/users/register",
+        "https://mlm-eo5g.onrender.com/api/users/register",
+        // "https://mlm-psi.vercel.app/api/users/register",
         formData
       );
       setUserId(res.data.userId);
