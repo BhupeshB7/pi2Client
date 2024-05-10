@@ -3,8 +3,6 @@ import "./Home.css";
 import { ImLocation, ImWhatsapp } from "react-icons/im";
 import { IoCall, IoRefresh } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
-// import ReCAPTCHA from 'react-google-recaptcha'
-// for Accordian or Faq
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
