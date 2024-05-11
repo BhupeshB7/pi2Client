@@ -5,7 +5,7 @@ import "../Home/Home.css";
 import Button from "../Home/Button";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
-import {FaTimes} from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 const DashboardNavbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef(null);
@@ -137,13 +137,17 @@ const DashboardNavbar = ({ data }) => {
 
     fetchsponsors();
   }, [data.userId]);
-// For User LogOut
-const handleLogout = () => {
-  alert('LogOut SuccessFully!!!');
-  localStorage.removeItem("hasAnimationShownBefore");
-  localStorage.removeItem("token");
-  window.location.href = "/login";
-};
+  // For User LogOut
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      alert("LogOut SuccessFully!!!");
+      localStorage.removeItem("hasAnimationShownBefore");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+  };
+
   return (
     <>
       <div style={{ position: "relative" }} ref={navbarRef}>
@@ -197,7 +201,7 @@ const handleLogout = () => {
               <p className="text-center text-amber-100 text-md m-3 mt-5 userDashboardText">
                 Hello, {data.name}{" "}
               </p>
-   
+
               <>
                 {data.role === "admin" || data.role === "Admin" ? (
                   <>
@@ -208,7 +212,7 @@ const handleLogout = () => {
                           style={{
                             textDecoration: "underline",
                           }}
-                        > 
+                        >
                           Admin Dashboard
                         </h6>
                       </Link>
@@ -366,4 +370,3 @@ const handleLogout = () => {
 };
 
 export default DashboardNavbar;
-
