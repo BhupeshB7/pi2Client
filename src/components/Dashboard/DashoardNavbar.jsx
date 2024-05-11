@@ -137,7 +137,13 @@ const DashboardNavbar = ({ data }) => {
 
     fetchsponsors();
   }, [data.userId]);
-
+// For User LogOut
+const handleLogout = () => {
+  alert('LogOut SuccessFully!!!');
+  localStorage.removeItem("hasAnimationShownBefore");
+  localStorage.removeItem("token");
+  window.location.href = "/login";
+};
   return (
     <>
       <div style={{ position: "relative" }} ref={navbarRef}>
@@ -302,7 +308,7 @@ const DashboardNavbar = ({ data }) => {
                 className="d-flex justify-content-start gap-5 "
                 style={{ marginLeft: "20px", marginTop: "-30px" }}
               >
-                <Button>LogOut</Button>
+                <Button onClick={handleLogout}>LogOut</Button>
               </div>
               <p className="text-amber-100 italic ml-3">Version 2.0</p>
             </motion.nav>

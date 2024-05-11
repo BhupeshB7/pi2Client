@@ -588,13 +588,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     navigate("/tasks");
   };
 
-  // For User LogOut
-  const handleLogout = () => {
-    localStorage.removeItem("hasAnimationShownBefore");
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    window.location.href = "/login";
-  };
+  
 
   // For User LogOut
   const handleLogin = () => {
@@ -775,7 +769,7 @@ const Dashboard1 = ({ contactInfoList }) => {
               {token && isTokenValid ? (
                 <>
                   <div>
-                    <DashboardNavbar data={data} />
+                    <DashboardNavbar data={data}/>
                   </div>
 
                   {/* Dashboard-Navbar */}

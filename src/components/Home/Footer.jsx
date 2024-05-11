@@ -32,7 +32,7 @@ const Footer = () => {
             </Col>
 
             <Col xs={12} sm={12} md={5} lg={5} className="d-flex  justify-end">
-              <Button>Login</Button>
+              <Button onClick={()=>(window.location.href='/login')}>Login</Button>
             </Col>
           </Row>
           <p className="text-center text-amber-200">&copy; 2024 Powerfull India</p>
