@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 // import ReCAPTCHA from 'react-google-recaptcha';
-import logo from "../assets/PI3.jpg";
+import logo from "../assets/newpilogo.jpg";
 import congrats from "../assets/congrats.png";
 import "./LoginSuccess.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
