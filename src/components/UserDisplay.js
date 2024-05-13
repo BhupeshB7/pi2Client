@@ -1551,7 +1551,7 @@ const Dashboard1 = ({ contactInfoList }) => {
                   ) : (
                     <></>
                   )}
-                  <div className="time_update">
+                  <div className="time_update" style={{paddingBottom:"100px"}}>
                     <IoTimer className="menu_icon" />
                     <h6> {realTimeDate}</h6>
                   </div>

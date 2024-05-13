@@ -100,7 +100,7 @@ function ReTopup({topupWallet}) {
         <div className="retopUp-box">
           <div className="retopUp_container retopUp_container-box" onClick={handleModalOpen}>
             <h6 className="text-center"style={{marginTop:'5px'}}>Re-TopUp</h6>
-            <h6 className="text-center" style={{marginTop:'-10px'}}>Now</h6>
+            <h6 className="text-center" style={{marginTop:'-5px'}}>Now</h6>
           </div>
           {showModal && (
             <Modal

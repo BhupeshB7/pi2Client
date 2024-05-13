@@ -1922,7 +1922,7 @@ label {
 }
 .retopUp_container-box {
   position: fixed;
-  bottom: 10%; /* Show from bottom 20% above */
+  bottom: 15%; /* Show from bottom 20% above */
   left: 50%;
 }
 .retopUp_container {
@@ -1999,6 +1999,7 @@ label {
   height: 100px;
   flex-direction: row;
   padding: 20px;
+  margin-bottom: 10px;
 }
 .retopUp_container-button {
   position: absolute;
@@ -2132,6 +2133,10 @@ label {
 }
 /* PI2.0 */
 .menu_content_container {
+  margin-top: 150px;
+  position: fixed;
+  top: auto;
+  bottom: 0;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
