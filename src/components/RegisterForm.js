@@ -69,7 +69,7 @@ const RegisterForm = () => {
   const fetchSponsorName = async () => {
     try {
       const sponsorResponse = await axios.get(
-        `https://mlm-psi.vercel.app/api/users/getSponsorName/${formData.sponsorId}`
+        `https://mlm-eo5g.onrender.com/api/users/getSponsorName/${formData.sponsorId}`
         // `https://mlm-psi.vercel.app/api/users/getSponsorName/${formData.sponsorId}`
       );
       setSponsorName(sponsorResponse.data.name);
