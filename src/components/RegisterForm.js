@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 // import ReCAPTCHA from 'react-google-recaptcha';
-import logo from "../assets/PI2.png";
-import registerImage from "../assets/register.png";
+import logo from "../assets/PI3.jpg";
 import congrats from "../assets/congrats.png";
 import "./LoginSuccess.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -142,7 +141,7 @@ const RegisterForm = () => {
                 <form onSubmit={handleSubmit}>
                 <div className="d-flex  justify-content-center align-items-center flex-row gap-3">
                   <div>
-                  <img src={logo} height={"100px"} width={"100px"} alt="Logo" />
+                  <img src={logo} height={"100px"} width={"100px"} alt="Logo" style={{borderRadius:"50%"}}/>
                   </div>
                   <div>
                     <p className="text-center text-amber-100">Welcome </p>

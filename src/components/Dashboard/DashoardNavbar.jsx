@@ -145,7 +145,7 @@ const DashboardNavbar = ({ data }) => {
       alert("LogOut SuccessFully!!!");
       localStorage.removeItem("hasAnimationShownBefore");
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = "/v2/login";
     }
   };
 
