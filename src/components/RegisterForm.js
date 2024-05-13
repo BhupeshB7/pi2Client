@@ -24,7 +24,7 @@ const RegisterForm = () => {
     navigate("/");
   }
   function onLogin() {
-    navigate("/login");
+    navigate("/v2/login");
   }
   const [userId, setUserId] = useState("");
   const [name, setName] = useState("");
@@ -311,7 +311,7 @@ const RegisterForm = () => {
                     </Button>
                     <Link
                       style={{ color: "white", marginBottom: "8px" }}
-                      to={"/login"}
+                      to={"/v2/login"}
                     >
                       Already registered{" "}
                       <b style={{ textDecoration: "underline" }}>Login</b>

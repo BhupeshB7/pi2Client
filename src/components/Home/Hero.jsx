@@ -32,9 +32,9 @@ const Hero = ({contactInfoList}) => {
             </motion.h5>
           </div>
           <div className="mt-3">
-            <Button onClick={() => window.location.href = "/login"}>Login</Button>
+            <Button onClick={() => window.location.href = "/v2/login"}>Login</Button>
           </div>
-          <Button onClick={() => window.location.href = "/register"}>Let's started</Button>
+          <Button onClick={() => window.location.href = "/v2/register"}>Let's started</Button>
           <Container>
             <Row className="d-flex justify-content-center align-items-center">
               <Col

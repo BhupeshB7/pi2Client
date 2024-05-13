@@ -139,8 +139,9 @@ const DashboardNavbar = ({ data }) => {
   }, [data.userId]);
   // For User LogOut
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    const confirmLogout = window.confirm("Are you sure you want to logOut?");
     if (confirmLogout) {
+      isOpen(false);
       alert("LogOut SuccessFully!!!");
       localStorage.removeItem("hasAnimationShownBefore");
       localStorage.removeItem("token");

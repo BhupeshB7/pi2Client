@@ -342,7 +342,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     if (isTokenExpired()) {
       setIsTokenValid(false);
       // redirect to homepage
-      window.location.href = "/login";
+      window.location.href = "/v2/login";
     }
   }, []);
 
@@ -812,7 +812,7 @@ const Dashboard1 = ({ contactInfoList }) => {
                           Re login to continue...
                         </h6>
                         <Link
-                          to="/login"
+                          to="/v2/login"
                           className="text-center text-primary"
                           style={{ textDecoration: "underline" }}
                         >

@@ -89,7 +89,7 @@ function App() {
           <Route path="/" element={<Hero contactInfoList={contactInfoList}/>} />
           <Route  path="/home" element={<Home contactInfoList={contactInfoList}/>} />
           <Route  path="/image" element={<ProfileImage/>} />
-          <Route  path="/register" element={<RegisterForm/>} />
+          <Route  path="/v2/register" element={<RegisterForm/>} />
 
         {/* <PrivateRoute path="/admin/dashboard" isLoggedIn={isLoggedIn}>
           <AdminDashboard onLogout={handleLogout} />
@@ -101,7 +101,7 @@ function App() {
           <Route path='dashboard' element={<AdminDashboard/>} />
         </Route> */}
         <Route path="/admin-login" element={<Login />} />
-          <Route  path="/login" element={<LoginPage/>} LoginPage={setToken}/>
+          <Route  path="/v2/login" element={<LoginPage/>} LoginPage={setToken}/>
           {/* <Route  path="/admin-login" element={<Login/>} /> */}
           <Route  path="/dashboard" element={<Dashboard contactInfoList={contactInfoList}/>}/>
           <Route  path="/task" element={<Task/>}/>

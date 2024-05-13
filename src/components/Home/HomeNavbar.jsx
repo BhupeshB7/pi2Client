@@ -74,10 +74,10 @@ const Navbar = () => {
                 <a href="/">Home</a>
               </motion.li>
               <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="nav-item">
-                <a href="/register">Sign up</a>
+                <a href="/v2/register">Sign up</a>
               </motion.li>
               <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="nav-item">
-                <a href="/login">LogIn</a>
+                <a href="/v2/login">LogIn</a>
               </motion.li>
             </ul>
           </motion.nav>
