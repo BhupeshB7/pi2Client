@@ -565,7 +565,9 @@ function UserData() {
           {/* https://cdn-icons-png.flaticon.com/128/11533/11533705.png */}
         </Row>
       </Container>
+      <Container>
       <AdminCarouselImage />
+      </Container>
       <UserBalance />
       <h4 className="text-center text-dark p-2">User Details</h4>
       <input

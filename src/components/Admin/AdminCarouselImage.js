@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+
 import imageSpinner from '../../assets/imageSpinner.gif'
 const App = () => {
   const [image, setImage] = useState(null);
@@ -116,19 +117,20 @@ function arrayBufferToBase64(buffer) {
             <Row>
               <Col sm={12} md={6} lg={4} className='CarouselImage'>
                 {images.map((img) => (
-                  <Card key={img._id} style={{ width: '18rem', height: '14rem', marginBottom: '10px' }}>
-                    <Card.Img
+                  <div  key={img._id} className="max-w-sm rounded overflow-hidden shadow-lg m-1">
+                    <img
                       variant="top"
                       src={`data:${img.contentType};base64,${arrayBufferToBase64(img.data.data)}`}
                       height='165px'
+                      className='adminCarouselImage'
                       width='100%'
                     />
-                    <Card.Body>
-                      <Button variant="danger" onClick={() => handleDelete(img._id)}>
+                    <div>
+                      <Button variant="danger" className='m-1' onClick={() => handleDelete(img._id)}>
                         Delete
                       </Button>
-                    </Card.Body>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </Col>
             </Row>

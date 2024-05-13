@@ -1442,9 +1442,15 @@ color: green !important;
 .CarouselImage {
   display: flex;
   width: 100%;
+  align-items: center;
   justify-content: center;
   margin: 10px;
   flex-wrap: wrap;
+}
+.adminCarouselImage{
+  height:200px !important;
+  width: 100%;
+  min-width: 280px ;
 }
 .apexcharts-datalabel,
 .apexcharts-datalabels span {
@@ -1937,9 +1943,9 @@ label {
     #b12a5b 100%
   );
   border-radius: 27px;
-  width: 140px;
+  width: 140px !important;
   height: 55px;
-  padding: 0px;
+  padding: 10px;
   flex-direction: column;
   box-shadow: inset 0 0 1em rgb(254, 154, 154), 0 0 1.3 rgb(249, 167, 167);
 }
