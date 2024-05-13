@@ -9,7 +9,7 @@ const QRCodeGenerator = ({userId}) => {
   const generateQRCode = (user) => {
     // The data to be encoded in the QR code
     // const qrDataText = `https://globalsuccesspoint.in/register?ref=${user}`;
-    const qrDataText = `https://powerfullindia.com/register?ref=${user}`;
+    const qrDataText = `https://powerfullindia.com/v2/register?ref=${user}`;
     // const qrDataText = "GSP230001634";
     setQrData(qrDataText);
   };

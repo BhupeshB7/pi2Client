@@ -653,7 +653,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   };
 
   // referral link
-  const referralLink = `https://powerfullindia.com/register?ref=${data.userId}`;
+  const referralLink = `https://powerfullindia.com/v2/register?ref=${data.userId}`;
   // const referralLink = `https://globalsuccesspoint.in/register?ref=${data.userId}`;
 
   // const handleCopy = () => {
@@ -683,7 +683,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   };
 
   const handleWhatsAppClick = () => {
-    const message = `https://powerfullindia.com/register?ref=${data.userId}`;
+    const message = `https://powerfullindia.com/v2/register?ref=${data.userId}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
