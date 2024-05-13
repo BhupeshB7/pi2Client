@@ -959,7 +959,7 @@ const Dashboard1 = ({ contactInfoList }) => {
                           className="d-flex justify-content-center align-items-center p-2"
                         >
                           <div className="income_card">
-                            <div className="col-12 col-sm-9 col-md-5 col lg-4 ">
+                            <div>
                               <div className=" incomeCard">
                                 <div className="text-center  text-amber-100 text-xl ">
                                   INCOME
