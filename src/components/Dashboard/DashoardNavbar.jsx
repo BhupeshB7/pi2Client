@@ -13,7 +13,10 @@ const DashboardNavbar = ({ data }) => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const [sponsors, setSponsors] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    lastPage: 1,
+  });
   const openModal = () => {
     setModalIsOpen(true);
     isOpen(false);
@@ -101,7 +104,9 @@ const DashboardNavbar = ({ data }) => {
       threeMonthsFromActivation.getMonth() + 3
     );
     const seventyFiveDaysFromActivation = new Date(data.activationTime);
-    seventyFiveDaysFromActivation.setDate(seventyFiveDaysFromActivation.getDate() + 75);
+    seventyFiveDaysFromActivation.setDate(
+      seventyFiveDaysFromActivation.getDate() + 75
+    );
 
     reactivationTime = seventyFiveDaysFromActivation.toLocaleString("en-IN", {
       year: "numeric",
@@ -123,20 +128,68 @@ const DashboardNavbar = ({ data }) => {
       daysLeftForReactivation = `Account has been reactivated`;
     }
   }
+  // useEffect(() => {
+  //   const fetchsponsors = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://mlm-eo5g.onrender.com/api/direct/${data.userId}`
+  //       );
+  //       setSponsors(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchsponsors();
+  // }, [data.userId]);
+  //Direct member code with pagination
   useEffect(() => {
-    const fetchsponsors = async () => {
+    const fetchSponsors = async () => {
       try {
         const response = await axios.get(
           `https://mlm-eo5g.onrender.com/api/direct/${data.userId}`
         );
-        setSponsors(response.data);
+        setSponsors(response.data.data);
+        setPagination({
+          currentPage: response.data.currentPage,
+          lastPage: response.data.lastPage,
+        });
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchsponsors();
+    fetchSponsors();
   }, [data.userId]);
+
+  const handlePreviousPage = async () => {
+    if (pagination.currentPage > 1) {
+      const nextPage = pagination.currentPage - 1;
+      const response = await axios.get(
+        `https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`
+      );
+      setSponsors(response.data.data);
+      setPagination({
+        currentPage: response.data.currentPage,
+        lastPage: response.data.lastPage,
+      });
+    }
+  };
+
+  const handleNextPage = async () => {
+    if (pagination.currentPage < pagination.lastPage) {
+      const nextPage = pagination.currentPage + 1;
+      const response = await axios.get(
+        `https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`
+      );
+      setSponsors(response.data.data);
+      setPagination({
+        currentPage: response.data.currentPage,
+        lastPage: response.data.lastPage,
+      });
+    }
+  };
+  //Direct member code with pagination End
   // For User LogOut
   const handleLogout = () => {
     setIsOpen(false);
@@ -361,6 +414,13 @@ const DashboardNavbar = ({ data }) => {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="pagination d-flex justify-content-center align-items-center">
+              <button className="btn btn-dark m-1" disabled={pagination.currentPage === 1} onClick={handlePreviousPage}>Previous</button>
+              <h6 className="m-1 text-light bold italic">
+                {pagination.currentPage}/{pagination.lastPage}
+              </h6>
+              <button className="btn btn-dark m-1" disabled={pagination.currentPage === pagination.lastPage} onClick={handleNextPage}>Next</button>
             </div>
             {/* Modal Content end*/}
           </div>
