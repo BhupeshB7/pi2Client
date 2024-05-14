@@ -801,14 +801,18 @@ const Dashboard1 = ({ contactInfoList }) => {
                           >
                             UserID: {data.userId}
                           </h6>
+                          
+                          <h6 className="text-center" style={{ color: "#ccc" }}>
+                            SponsorID: {data.sponsorId}
+                          </h6>
+                          <h6 className="text-center" style={{ color: "#ccc" }}>
+                            Package:<b className="text-amber-200 text-md m-1">{data.package===0 || !data.package? 'Not Available':data.package}</b> 
+                          </h6>
                           <h6
                             className="text-center "
                             style={{ color: "#aaa" }}
                           >
                             Email: {data.email}
-                          </h6>
-                          <h6 className="text-center" style={{ color: "#ccc" }}>
-                            SponsorID: {data.sponsorId}
                           </h6>
                         </div>
                       </div>

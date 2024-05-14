@@ -118,6 +118,10 @@ function Profile() {
                           <td>IFSC CODE:</td>
                           <td>{data.ifscCode}</td>
                         </tr>
+                        <tr>
+                          <td>Package:</td>
+                          <td>{data.package===0 || !data.package? 'Not Available':data.package}</td>
+                        </tr>
 
                         <tr>
                           <td>Profile Created:</td>

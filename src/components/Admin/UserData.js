@@ -590,6 +590,7 @@ function UserData() {
               <th>Sponsor Id</th>
               <th>User Id</th>
               <th>Status</th>
+              <th>Package</th>
               <th>Block/Unblock</th>
               <th>Activation Time</th>
               <th>Action</th>
@@ -615,6 +616,7 @@ function UserData() {
                 <td>{user.sponsorId}</td>
                 <td>{user.userId}</td>
                 <td>{user.is_active ? "Active" : "Deactive"}</td>
+                <td>{user.package===0 || !user.package? 'Not Available':user.package}</td>
                 <td className="text-center">
                   {user.isBlocked ? (
                     <button
