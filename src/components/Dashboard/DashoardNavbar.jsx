@@ -17,6 +17,8 @@ const DashboardNavbar = ({ data }) => {
     currentPage: 1,
     lastPage: 1,
   });
+  const [loadingPrev, setLoadingPrev] = useState(false);
+  const [loadingNext, setLoadingNext] = useState(false);
   const openModal = () => {
     setModalIsOpen(true);
     isOpen(false);
@@ -146,16 +148,17 @@ const DashboardNavbar = ({ data }) => {
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
-        const response = await axios.get(
-          `https://mlm-eo5g.onrender.com/api/direct/${data.userId}`
-        );
+        setLoadingNext(true);
+        const response = await axios.get(`https://mlm-eo5g.onrender.com/api/direct/${data.userId}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,
-          lastPage: response.data.lastPage,
+          lastPage: response.data.lastPage
         });
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoadingNext(false);
       }
     };
 
@@ -164,29 +167,39 @@ const DashboardNavbar = ({ data }) => {
 
   const handlePreviousPage = async () => {
     if (pagination.currentPage > 1) {
-      const nextPage = pagination.currentPage - 1;
-      const response = await axios.get(
-        `https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`
-      );
-      setSponsors(response.data.data);
-      setPagination({
-        currentPage: response.data.currentPage,
-        lastPage: response.data.lastPage,
-      });
+      setLoadingPrev(true);
+      try {
+        const nextPage = pagination.currentPage - 1;
+        const response = await axios.get(`https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
+        setSponsors(response.data.data);
+        setPagination({
+          currentPage: response.data.currentPage,
+          lastPage: response.data.lastPage
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoadingPrev(false);
+      }
     }
   };
 
   const handleNextPage = async () => {
     if (pagination.currentPage < pagination.lastPage) {
-      const nextPage = pagination.currentPage + 1;
-      const response = await axios.get(
-        `https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`
-      );
-      setSponsors(response.data.data);
-      setPagination({
-        currentPage: response.data.currentPage,
-        lastPage: response.data.lastPage,
-      });
+      setLoadingNext(true);
+      try {
+        const nextPage = pagination.currentPage + 1;
+        const response = await axios.get(`https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
+        setSponsors(response.data.data);
+        setPagination({
+          currentPage: response.data.currentPage,
+          lastPage: response.data.lastPage
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoadingNext(false);
+      }
     }
   };
   //Direct member code with pagination End
@@ -416,11 +429,11 @@ const DashboardNavbar = ({ data }) => {
               </table>
             </div>
             <div className="pagination d-flex justify-content-center align-items-center">
-              <button className="btn btn-dark m-1" disabled={pagination.currentPage === 1} onClick={handlePreviousPage}>Previous</button>
+              <button className="btn btn-dark m-1" disabled={pagination.currentPage === 1||loadingPrev || loadingNext} onClick={handlePreviousPage}>Previous {loadingPrev && <h6 className="text-amber-100 text-sm italic ">Loading...</h6>}</button>
               <h6 className="m-1 text-light bold italic">
                 {pagination.currentPage}/{pagination.lastPage}
               </h6>
-              <button className="btn btn-dark m-1" disabled={pagination.currentPage === pagination.lastPage} onClick={handleNextPage}>Next</button>
+              <button className="btn btn-dark m-1" disabled={pagination.currentPage === pagination.lastPage||loadingNext || loadingPrev} onClick={handleNextPage}>Next {loadingNext && <h6 className="text-amber-100 text-sm italic ">Loading...</h6>}</button>
             </div>
             {/* Modal Content end*/}
           </div>
