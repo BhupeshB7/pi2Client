@@ -198,7 +198,7 @@ const Dashboard1 = ({ contactInfoList }) => {
         setData(result);
 
         setIsLoading(false);
-      } catch (error) {
+      } catch (error) { 
         console.error("Error fetching data:", error);
       }
     };
@@ -281,16 +281,23 @@ const Dashboard1 = ({ contactInfoList }) => {
   }, [data.userId]);
   useEffect(() => {
     // Call the backend API to get the team structure
+    setIsLoading(true);
     axios
       .get(
         `https://mlm-eo5g.onrender.com/api/users/teamStructure/${data.userId}`
       )
       .then((response) => {
         setActiveUsersByLevel(response.data);
+        setIsLoading(true);
       })
       .catch((error) => {
         console.error("Error fetching team structure:", error);
-      });
+        setIsLoading(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+
   }, [data.userId]);
 
   useEffect(() => {
@@ -712,14 +719,13 @@ const Dashboard1 = ({ contactInfoList }) => {
     document.body.removeChild(textArea);
   };
 
-  const levelCounts = [1, 10, 70, 350, 800, 2000];
+  const levelCounts = [1, 10, 60, 300, 800];
   const levelRanks = [
     "Fresher",
-    "Bronze",
-    "Silver",
-    "Gold",
-    "Royal Star",
-    "Diamond",
+    "Star",
+    "Top Leader",
+    "Royal Gold",
+    "Diamond ",
   ];
 
   const depositFormPage = () => {
@@ -1153,6 +1159,8 @@ const Dashboard1 = ({ contactInfoList }) => {
                             className="modal-body"
                             style={{ overflowX: "auto" }}
                           >
+                           
+                            
                             <table className="table table-bordered">
                               <thead className="fw-300">
                                 <tr className="text-light">
@@ -1165,6 +1173,7 @@ const Dashboard1 = ({ contactInfoList }) => {
                                 </tr>
                               </thead>
                               <tbody>
+                              {isLoading ?(<h6 className="text-center text-light ">Loading</h6>):(<>
                                 {Object.keys(activeUsersByLevel).map(
                                   (level, index) => (
                                     <tr key={level}>
@@ -1198,8 +1207,10 @@ const Dashboard1 = ({ contactInfoList }) => {
                                     </tr>
                                   )
                                 )}
+                                </>)}
                               </tbody>
                             </table>
+                            
                           </div>
                           <div className="modal-footer"></div>
                         </div>

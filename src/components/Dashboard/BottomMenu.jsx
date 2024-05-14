@@ -26,7 +26,7 @@ const Menu = () => {
     ];
 
     return (
-        <div style={{paddingTop:'130px'}} className=' bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_2px,transparent_2px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:21px_30px]'>
+        <div  className=' bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_2px,transparent_2px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:21px_30px]'>
             <div className='menu_content_container'>
                 {menuItem.map((item, index) => (
                     <a key={index} href={item.link} className='menu_content'>

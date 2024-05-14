@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 import { Button, Alert } from "react-bootstrap";
 
-function ReTopup({topupWallet}) {
+function ReTopup({ topupWallet }) {
   const [message, setMessage] = useState("");
   const [reTopUpRequired, setReTopUpRequired] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -12,6 +12,7 @@ function ReTopup({topupWallet}) {
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
   const usersID = localStorage.getItem("GamerUserId");
+  const [selectedAmount, setSelectedAmount] = useState(500);
   const [isValid, setIsValid] = useState(true);
   useEffect(() => {
     const fetchActivationStatus = async () => {
@@ -47,20 +48,23 @@ function ReTopup({topupWallet}) {
   const handleClose = () => {
     setShowModal(false);
   };
-
-  const handleActivateUser = async () => {
+  const handleActivateUser = async (amount) => {
+    if (!userId.trim()) {
+      setIsValid(false);
+      return;
+    }
+    if (!amount) {
+      alert("Please select an amount.");
+      return;
+    }
+    if (topupWallet < amount) {
+      alert("Insufficient funds for Activation");
+      return;
+    }
     try {
-      if (!userId.trim()) {
-        setIsValid(false);
-        return;
-      }
-     else if (topupWallet < 850) {
-        alert("Insufficient funds for Activation");
-        return;
-      }
-      setLoading(true); // Set loading state when sending request
       const response = await fetch(
         `https://mlm-eo5g.onrender.com/api/deposit/topUpUserID/${userId}`,
+        // `https://mlm-eo5g.onrender.com/api/deposit/topUpUserID/${data.userId}`,
         {
           method: "POST",
           headers: {
@@ -68,6 +72,7 @@ function ReTopup({topupWallet}) {
           },
           body: JSON.stringify({
             userId,
+            amount,
           }),
         }
       );
@@ -80,27 +85,78 @@ function ReTopup({topupWallet}) {
       const responseData = await response.json();
 
       if (responseData.success) {
-        // Display success message or update user balance
+        // display success message or update user balance
         alert("Account Activated Successfully");
         window.location.href = "/dashboard";
       } else {
-        // Display error message
-        setError(responseData.error);
+        // display error message
+        alert(`Activation Failed: ${responseData.error}`);
       }
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false); // Set loading state to false after request is complete
+      console.error("Error:", error);
+      alert(`Activation failed: ${error.message}`);
     }
   };
+  // const handleActivateUser = async () => {
+  //   try {
+  //     if (!userId.trim()) {
+  //       setIsValid(false);
+  //       return;
+  //     }
+  //    else if (topupWallet < 850) {
+  //       alert("Insufficient funds for Activation");
+  //       return;
+  //     }
+  //     setLoading(true); // Set loading state when sending request
+  //     const response = await fetch(
+  //       `https://mlm-eo5g.onrender.com/api/deposit/topUpUserID/${userId}`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           userId,
+  //         }),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.error || "Activation failed");
+  //     }
+
+  //     const responseData = await response.json();
+
+  //     if (responseData.success) {
+  //       // Display success message or update user balance
+  //       alert("Account Activated Successfully");
+  //       window.location.href = "/dashboard";
+  //     } else {
+  //       // Display error message
+  //       setError(responseData.error);
+  //     }
+  //   } catch (error) {
+  //     setError(error.message);
+  //   } finally {
+  //     setLoading(false); // Set loading state to false after request is complete
+  //   }
+  // };
 
   return (
     <div>
       {reTopUpRequired && (
         <div className="retopUp-box">
-          <div className="retopUp_container retopUp_container-box" onClick={handleModalOpen}>
-            <h6 className="text-center"style={{marginTop:'5px'}}>Re-TopUp</h6>
-            <h6 className="text-center" style={{marginTop:'-5px'}}>Now</h6>
+          <div
+            className="retopUp_container retopUp_container-box"
+            onClick={handleModalOpen}
+          >
+            <h6 className="text-center" style={{ marginTop: "5px" }}>
+              Re-TopUp
+            </h6>
+            <h6 className="text-center" style={{ marginTop: "-5px" }}>
+              Now
+            </h6>
           </div>
           {showModal && (
             <Modal
@@ -138,9 +194,27 @@ function ReTopup({topupWallet}) {
                       Please enter a User ID
                     </div>
                   )}
+                  <div className="select_package_box">
+                    <div className="select_package">
+                      <button onClick={() => setSelectedAmount(500)}>
+                        500{" "}
+                        <b className="text-xl">
+                          {selectedAmount === 500 && "✓"}
+                        </b>
+                      </button>
+                    </div>
+                    <div className="select_package">
+                      <button onClick={() => setSelectedAmount(1000)}>
+                        1000{" "}
+                        <b className="text-xl">
+                          {selectedAmount === 1000 && "✓"}
+                        </b>
+                      </button>
+                    </div>
+                  </div>
                   <Button
                     variant="primary"
-                    onClick={handleActivateUser}
+                    onClick={() => handleActivateUser(selectedAmount)}
                     disabled={loading}
                   >
                     {loading ? (
@@ -155,7 +229,11 @@ function ReTopup({topupWallet}) {
                     )}
                   </Button>
                 </div>
-                {error && <Alert variant="danger" dismissible>{error}</Alert>}
+                {error && (
+                  <Alert variant="danger" dismissible>
+                    {error}
+                  </Alert>
+                )}
               </div>
             </Modal>
           )}

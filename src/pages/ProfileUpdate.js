@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import spinner from "../assets/spinner2.gif";
 import { Button, Container } from "react-bootstrap";
+import Background from "../components/Home/Background";
 
 const ProfileUpdate = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,7 +22,7 @@ const ProfileUpdate = () => {
   const [isDetailsUpdatedOnServer, setIsDetailsUpdatedOnServer] =
     useState(false);
   const [updateCount, setUpdateCount] = useState(0);
-  const [maxUpdateLimit] = useState(3);
+  const [maxUpdateLimit] = useState(4);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -145,12 +146,13 @@ const ProfileUpdate = () => {
   }
   const remainingUpdate = maxUpdateLimit - updateCount;
   return (
-    <div className="gameProfile-Update">
-      <h6 className="text-start text-info fw-bold p-2">
+    <div  >
+      <Background/>
+      <h6 className="text-start text-info fw-bold p-3">
         {" "}
         Hello, {profileData.name}
       </h6>
-      <h6 className="text-center text-success mt-1"> Update Your Profile</h6>
+      <h6 className="text-center text-amber-200 mt-1 underline"> Update Your Profile</h6>
       <div className="updateRemainig">
         <h6 className="text-end text-danger m-2 p-1 " style={{ zIndex: "1" }}>
           *You have {remainingUpdate} Attempts Remaining to update your Profile
@@ -158,7 +160,7 @@ const ProfileUpdate = () => {
       </div>
       <Container>
         <div className="form_container form_containers">
-          <div className="form_data">
+          <div className="form_data profile_update">
             <form onSubmit={handleSubmit}>
               <div className="form_input">
                 <label htmlFor="bio">Biography:</label>

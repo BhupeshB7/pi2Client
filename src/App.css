@@ -981,7 +981,8 @@ th {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 150px;
+  /* height: 150px; */
+  gap: 10px;
   width: 100%;
 }
 .sponsor-name {
@@ -1983,12 +1984,14 @@ label {
   justify-content: center;
   margin: auto;
   flex-direction: column;
+  gap: 10px;
 }
 .retopUp_input input {
   border: 2px solid #302020;
   background: #ffcdcd;
   color: #160a0a !important;
   width: 280px;
+  padding: 5px;
 }
 .retopUp_input ::placeholder {
   color: #464647;
@@ -2133,10 +2136,6 @@ label {
 }
 /* PI2.0 */
 .menu_content_container {
-  margin-top: 150px;
-  position: fixed;
-  top: auto;
-  bottom: 0;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
@@ -2177,4 +2176,8 @@ label {
 .content_container input{
 padding: 4px;
 color: #f0ff80;
+}
+/* profile update */
+.profile_update input{
+  padding: 6px;
 }

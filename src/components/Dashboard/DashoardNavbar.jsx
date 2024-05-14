@@ -100,10 +100,10 @@ const DashboardNavbar = ({ data }) => {
     threeMonthsFromActivation.setMonth(
       threeMonthsFromActivation.getMonth() + 3
     );
-    const seventyDaysFromActivation = new Date(data.activationTime);
-    seventyDaysFromActivation.setDate(seventyDaysFromActivation.getDate() + 70);
+    const seventyFiveDaysFromActivation = new Date(data.activationTime);
+    seventyFiveDaysFromActivation.setDate(seventyFiveDaysFromActivation.getDate() + 75);
 
-    reactivationTime = seventyDaysFromActivation.toLocaleString("en-IN", {
+    reactivationTime = seventyFiveDaysFromActivation.toLocaleString("en-IN", {
       year: "numeric",
       month: "long",
       day: "2-digit",
@@ -115,7 +115,7 @@ const DashboardNavbar = ({ data }) => {
     // Calculate the number of days left for reactivation
     const currentDate = new Date();
     const daysRemaining = Math.ceil(
-      (seventyDaysFromActivation - currentDate) / (1000 * 60 * 60 * 24)
+      (seventyFiveDaysFromActivation - currentDate) / (1000 * 60 * 60 * 24)
     );
     if (daysRemaining > 0) {
       daysLeftForReactivation = `Reactivate in ${daysRemaining} days`;
