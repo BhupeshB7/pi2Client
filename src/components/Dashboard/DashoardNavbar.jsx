@@ -5,7 +5,7 @@ import "../Home/Home.css";
 import Button from "../Home/Button";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
+import { FaPowerOff, FaTimes } from "react-icons/fa";
 const DashboardNavbar = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef(null);
@@ -373,13 +373,15 @@ const DashboardNavbar = ({ data }) => {
                     </motion.div>
                   </motion.div>
                 </div>
-                ;
+                
               </ul>
               <div
-                className="d-flex justify-content-start gap-5 "
-                style={{ marginLeft: "20px", marginTop: "-30px" }}
+                className="d-flex justify-content-start gap-2"
+                style={{ marginLeft: "20px", marginTop: "10px", marginRight: "20px" }}
               >
-                <Button onClick={handleLogout}>LogOut</Button>
+                  <div className="symbol1">
+                      <FaPowerOff onClick={handleLogout} />
+                    </div>
               </div>
               <p className="text-amber-100 italic ml-3">Version 2.0</p>
             </motion.nav>
