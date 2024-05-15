@@ -72,12 +72,12 @@ function Setting() {
               <div className=" bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_2px,transparent_2px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:21px_30px]">
                 <div>
                   <h5
-                    className="text-warning text-center pt-5  m-2fw-bold"
-                    style={{ fontFamily: "cursive" }}
+                    className="text-amber-300 wallet-text text-center pt-5  m-2fw-bold underline"
+                    
                   >
                     Hello, {data.name}
                   </h5>
-                  <h6 className="text-light" style={{ paddingLeft: "15px" }}>
+                  <h6 className="text-amber-100" style={{ paddingLeft: "15px" }}>
                     <b style={{ fontFamily: "poppins", fontSize: "36px" }}>"</b>{" "}
                     Welcome to the Wallet...
                   </h6>
@@ -95,16 +95,18 @@ function Setting() {
                       >
                         <div className="income_card1">
                           <div className="income_subCard">
-                            <div className="symbol">
-                              <FaRupeeSign />
-                            </div>
-                            <div className="wallet_symbol-head">
-                              <p className="wallet-text text-amber-100">
+                            <div className="wallet_item">
+                              <p className="wallet-text text-amber-100 text-xl">
                                 Total Balance
                               </p>
-                              <p className="text-center text-xl text-amber-100">
-                                {data.balance}
-                              </p>
+                              <div className="wallet_rupee_amount">
+                                <div className="symbol">
+                                  <FaRupeeSign />
+                                </div>
+                                <p className="text-center text-xl text-amber-100">
+                                  {data.balance}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -119,16 +121,18 @@ function Setting() {
                       >
                         <div className="income_card1">
                           <div className="income_subCard">
-                            <div className="symbol">
-                              <FaRupeeSign />
-                            </div>
-                            <div className="wallet_symbol-head">
-                              <p className="wallet-text text-amber-100">
+                            <div className="wallet_item">
+                              <p className="wallet-text text-amber-100 text-xl">
                                 TopUp Balance
                               </p>
-                              <p className="text-center text-xl text-amber-100">
-                                {data.topupWallet}
-                              </p>
+                              <div className="wallet_rupee_amount">
+                                <div className="symbol">
+                                  <FaRupeeSign />
+                                </div>
+                                <p className="text-center text-xl text-amber-100">
+                                  {data.topupWallet}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -148,16 +152,18 @@ function Setting() {
                       >
                         <div className="income_card1">
                           <div className="income_subCard">
-                            <div className="symbol">
-                              <FaRupeeSign />
-                            </div>
-                            <div className="wallet_symbol-head">
-                              <p className="wallet-text text-amber-100">
-                                Total Wallet
+                            <div className="wallet_item">
+                              <p className="wallet-text text-amber-100 text-xl">
+                                Total Income
                               </p>
-                              <p className="text-center text-xl text-amber-100">
-                                {data.income}
-                              </p>
+                              <div className="wallet_rupee_amount">
+                                <div className="symbol">
+                                  <FaRupeeSign />
+                                </div>
+                                <p className="text-center text-md text-amber-100">
+                                  {data.income}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -171,17 +177,19 @@ function Setting() {
                         className="d-flex justify-content-center align-items-center p-2"
                       >
                         <div className="income_card1">
-                          <div className="income_subCard">
+                        <div className="income_subCard">
+                            <div className="wallet_item">
+                              <p className="wallet-text text-amber-100 text-xl">
+                                Total Withdrawal
+                              </p>
+                            <div className="wallet_rupee_amount">
                             <div className="symbol">
                               <FaRupeeSign />
                             </div>
-                            <div className="wallet_symbol-head">
-                              <p className="wallet-text text-amber-100">
-                                Total  Withdrawal
-                              </p>
-                              <p className="text-center text-xl text-amber-100">
+                              <p className="text-center text-md text-amber-100">
                                 {data.withdrawal}
                               </p>
+                            </div>
                             </div>
                           </div>
                         </div>
@@ -266,7 +274,7 @@ function Setting() {
                   </Container>
 
                   {/* Balance section End */}
-            
+
                   <Container>
                     <TransferForm sourceUserId={data.userId} />
                   </Container>

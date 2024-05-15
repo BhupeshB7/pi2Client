@@ -195,13 +195,25 @@ font-size: 16px;
 .wallet-text{
 font-family: "Schibsted Grotesk", sans-serif !important;
   font-weight: 500;
-  font-size: 15px !important;
+  font-size: 17px !important;
 }
 .wallet_symbol-head{
   display: flex;
   justify-content: space-around;
   gap: 10px;
-  align-items: center;
+  align-items: baseline;
+}
+.wallet_item{
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  min-height: 80px;
+}
+.wallet_rupee_amount{
+  display: flex;
+  flex-direction: row;
+  align-items:end;
+  gap: 10px;
 }
 .select_package_box{
   display: flex;
