@@ -158,6 +158,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenFundMove, setModalIsOpenFundMove] = useState(false);
   const [modalIsOpenWithdrawal, setModalIsOpenWithdrawal] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const handleMLMAwards = () => {
     setmlmAward(!mlmAward);
   };
@@ -353,8 +354,8 @@ const Dashboard1 = ({ contactInfoList }) => {
 
   const handleWithdrawalSubmit = (e) => {
     e.preventDefault();
-    // Disable the withdraw button to prevent multiple clicks
-    document.getElementById("withdrawButton").disabled = true;
+    if(isProcessing) return;
+    setIsProcessing(true);
     const amount = Number(withdrawalAmount); // convert string to number
     fetch(
       `https://mlm-eo5g.onrender.com/api/withdraw/user/${data.userId}`,
@@ -375,6 +376,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     )
       .then((response) => response.json())
       .then((data) => {
+        setIsProcessing(false);
         if (data.success) {
           // display success message or update user balance
           toast.success("Withdrawal successful");
@@ -385,15 +387,11 @@ const Dashboard1 = ({ contactInfoList }) => {
         }
       })
       .catch((error) => {
+        setIsProcessing(false);
         console.error("Error:", error);
         toast.error(`Withdrawal failed: ${error.message}`);
         // toast.error('Sunday closed!!!')
-      })
-      .finally(() => {
-        // Re-enable the withdraw button after receiving the response
-        document.getElementById("withdrawButton").disabled = false;
-      });
-  };
+      })};
 
   //Fund move API and Function start
   const handleAmountChange = (event) => {
@@ -1282,9 +1280,8 @@ const Dashboard1 = ({ contactInfoList }) => {
                                   setWithdrawalAmount(e.target.value)
                                 }
                               />
-                              <Button
-                                id="withdrawButton"
-                                disabled={!withdrawalAmount}
+                              <Button 
+                              disabled={!withdrawalAmount || isProcessing}
                               >
                                 Withdraw
                               </Button>
