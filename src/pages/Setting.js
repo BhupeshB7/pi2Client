@@ -205,7 +205,7 @@ function Setting() {
 
             
             {/* Referral Section */}
-            <Container className="mt-4">
+            <Container className="mt-4" style={{ marginBottom: "100px" }}>
               <Row>
                 <Col>
                   <div className="">

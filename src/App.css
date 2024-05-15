@@ -1008,6 +1008,7 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 100px;
 }
 .transferWallet label,
 .transferWallet input {
@@ -2187,5 +2188,5 @@ color: #f0ff80;
   bottom: 0;
   right: 0;
   left: 0;
-  
+
 }

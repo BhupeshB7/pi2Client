@@ -112,7 +112,7 @@ const TransferForm = ({ sourceUserId }) => {
                 onClick={handleSearch} />
             </div>{" "}
           </div>
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
           {!errorMessage && notFound ? (
             <p>User not found</p>
           ) : (
