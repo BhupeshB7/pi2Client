@@ -254,3 +254,8 @@ font-family: "Schibsted Grotesk", sans-serif !important;
   background-color: #fffa6f;
   color: #36352f;
 }
+.logOut_Btton{
+  position: absolute;
+  top: 1%;
+  right: 2%;
+}

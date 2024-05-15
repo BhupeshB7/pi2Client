@@ -67,7 +67,7 @@ function ControlledCarousel() {
     <Container fluid className='p-1 w-100 h-25% pt-5'>
       <Carousel activeIndex={index} onSelect={handleSelect} className='carousel'>
         {images.map((img, i) => (
-          <Carousel.Item key={i}>
+          <Carousel.Item key={i} className='mt-3'>
             <img
               className="d-block w-100"
               src={`data:${img.contentType};base64,${arrayBufferToBase64(img.data.data)}`}

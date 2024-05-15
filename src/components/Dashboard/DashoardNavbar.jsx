@@ -379,8 +379,8 @@ const DashboardNavbar = ({ data }) => {
                 className="d-flex justify-content-start gap-2"
                 style={{ marginLeft: "20px", marginTop: "10px", marginRight: "20px" }}
               >
-                  <div className="symbol1">
-                      <FaPowerOff onClick={handleLogout} />
+                  <div className="symbol1" onClick={handleLogout}>
+                      <FaPowerOff  />
                     </div>
               </div>
               <p className="text-amber-100 italic ml-3">Version 2.0</p>

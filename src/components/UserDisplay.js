@@ -9,6 +9,7 @@ import {
   FaRupeeSign,
   FaTasks,
   FaUser,
+  FaPowerOff,
 } from "react-icons/fa";
 import { IoTimer } from "react-icons/io5";
 import { RiTeamFill } from "react-icons/ri";
@@ -759,6 +760,15 @@ const Dashboard1 = ({ contactInfoList }) => {
   const handleCloseWithdrawal = () => {
     setModalIsOpenWithdrawal(false);
   };
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logOut?");
+    if (confirmLogout) {
+      alert("LogOut SuccessFully!!!");
+      localStorage.removeItem("hasAnimationShownBefore");
+      localStorage.removeItem("token");
+      window.location.href = "/v2/login";
+    }
+  };
   return (
     <div className=" bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_2px,transparent_2px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:21px_30px]">
       <div>
@@ -779,6 +789,9 @@ const Dashboard1 = ({ contactInfoList }) => {
 
                   {/*  */}
                   <div className="container-fluid dashboard">
+                  <div className="symbol1 logOut_Btton" onClick={handleLogout}>
+                      <FaPowerOff  />
+                    </div>
                     <ControlledCarousel />
                     {token ? (
                       <div className="border-wrapper mt-2 d-flex flex-column justify-content-center align-items-center dashboard-profile-center">
