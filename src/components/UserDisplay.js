@@ -359,8 +359,8 @@ const Dashboard1 = ({ contactInfoList }) => {
     setIsProcessing(true);
     const amount = Number(withdrawalAmount); // convert string to number
     fetch(
-      // `https://mlm-eo5g.onrender.com/api/withdraw/user/${data.userId}`,
-      `http://localhost:5500/api/withdraw/user/${data.userId}`,
+      `https://mlm-eo5g.onrender.com/api/withdraw/user/${data.userId}`,
+      // `http://localhost:5500/api/withdraw/user/${data.userId}`,
       {
         // fetch(`http://localhost:5000/api/withdraw/user/${data.userId}`, {
         method: "POST",
