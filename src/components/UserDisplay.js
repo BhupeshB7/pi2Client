@@ -123,6 +123,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   const [data, setData] = useState([]);
   const [realTimeDate, setRealTimeDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isTeamLoading, setIsTeamLoading] = useState(true);
   const token = localStorage.getItem("token");
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
@@ -159,6 +160,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   const [modalIsOpenFundMove, setModalIsOpenFundMove] = useState(false);
   const [modalIsOpenWithdrawal, setModalIsOpenWithdrawal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [withdrawLoading, setWithdrawLoading] = useState(false);
   const handleMLMAwards = () => {
     setmlmAward(!mlmAward);
   };
@@ -199,7 +201,7 @@ const Dashboard1 = ({ contactInfoList }) => {
         setData(result);
 
         setIsLoading(false);
-      } catch (error) { 
+      } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
@@ -234,7 +236,6 @@ const Dashboard1 = ({ contactInfoList }) => {
         );
         const dailyLevel = await response.json();
         setDailyIncome(dailyLevel.dailyIncome);
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -282,23 +283,22 @@ const Dashboard1 = ({ contactInfoList }) => {
   }, [data.userId]);
   useEffect(() => {
     // Call the backend API to get the team structure
-    setIsLoading(true);
+    setIsTeamLoading(true);
     axios
       .get(
         `https://mlm-eo5g.onrender.com/api/users/teamStructure/${data.userId}`
       )
       .then((response) => {
         setActiveUsersByLevel(response.data);
-        setIsLoading(true);
+        setIsTeamLoading(true);
       })
       .catch((error) => {
         console.error("Error fetching team structure:", error);
-        setIsLoading(false);
+        setIsTeamLoading(false);
       })
       .finally(() => {
-        setIsLoading(false);
-      })
-
+        setIsTeamLoading(false);
+      });
   }, [data.userId]);
 
   useEffect(() => {
@@ -324,14 +324,14 @@ const Dashboard1 = ({ contactInfoList }) => {
         );
         console.log("API Response:", response.data);
         console.log(data.userId);
-  
+
         const { deposit } = response.data;
-  
+
         if (!deposit) {
           console.log("User not found!");
           return;
         }
-  
+
         const { depositAmount, isApproved } = deposit;
         console.log("Deposit Amount:", depositAmount);
         setTopUpAmount(depositAmount);
@@ -340,7 +340,7 @@ const Dashboard1 = ({ contactInfoList }) => {
         console.log(error);
       }
     };
-  
+
     fetchTopupAmount(); // Call the function inside useEffect directly
   }, [data.userId]);
 
@@ -354,12 +354,13 @@ const Dashboard1 = ({ contactInfoList }) => {
 
   const handleWithdrawalSubmit = (e) => {
     e.preventDefault();
-    if(isProcessing) return;
+    if (isProcessing) return;
+    setWithdrawLoading(true);
     setIsProcessing(true);
     const amount = Number(withdrawalAmount); // convert string to number
     fetch(
-      `https://mlm-eo5g.onrender.com/api/withdraw/user/${data.userId}`,
-      // `http://localhost:5500/api/withdraw/user/${data.userId}`,
+      // `https://mlm-eo5g.onrender.com/api/withdraw/user/${data.userId}`,
+      `http://localhost:5500/api/withdraw/user/${data.userId}`,
       {
         // fetch(`http://localhost:5000/api/withdraw/user/${data.userId}`, {
         method: "POST",
@@ -377,6 +378,7 @@ const Dashboard1 = ({ contactInfoList }) => {
       .then((response) => response.json())
       .then((data) => {
         setIsProcessing(false);
+        setWithdrawLoading(false);
         if (data.success) {
           // display success message or update user balance
           toast.success("Withdrawal successful");
@@ -388,10 +390,12 @@ const Dashboard1 = ({ contactInfoList }) => {
       })
       .catch((error) => {
         setIsProcessing(false);
+        setWithdrawLoading(false);
         console.error("Error:", error);
         toast.error(`Withdrawal failed: ${error.message}`);
         // toast.error('Sunday closed!!!')
-      })};
+      });
+  };
 
   //Fund move API and Function start
   const handleAmountChange = (event) => {
@@ -556,7 +560,6 @@ const Dashboard1 = ({ contactInfoList }) => {
     }
   };
 
-
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -590,8 +593,6 @@ const Dashboard1 = ({ contactInfoList }) => {
   const handleTasks = () => {
     navigate("/tasks");
   };
-
-  
 
   // For User LogOut
   const handleLogin = () => {
@@ -771,7 +772,7 @@ const Dashboard1 = ({ contactInfoList }) => {
               {token && isTokenValid ? (
                 <>
                   <div>
-                    <DashboardNavbar data={data}/>
+                    <DashboardNavbar data={data} />
                   </div>
 
                   {/* Dashboard-Navbar */}
@@ -797,12 +798,17 @@ const Dashboard1 = ({ contactInfoList }) => {
                           >
                             UserID: {data.userId}
                           </h6>
-                          
+
                           <h6 className="text-center" style={{ color: "#ccc" }}>
                             SponsorID: {data.sponsorId}
                           </h6>
                           <h6 className="text-center" style={{ color: "#ccc" }}>
-                            Package:<b className="text-amber-200 text-md m-1">{data.package===0 || !data.package? 'Not Available':data.package}</b> 
+                            Package:
+                            <b className="text-amber-200 text-md m-1">
+                              {data.package === 0 || !data.package
+                                ? "Not Available"
+                                : data.package}
+                            </b>
                           </h6>
                           <h6
                             className="text-center "
@@ -838,7 +844,7 @@ const Dashboard1 = ({ contactInfoList }) => {
                       style={{ letterSpacing: "2px" }}
                     >
                       <div className="text-light ms-5 fw-bold">
-                        {isLoading ? (
+                        {isTeamLoading ? (
                           <p className="text-light">Loading...</p>
                         ) : (
                           <div>
@@ -1159,8 +1165,6 @@ const Dashboard1 = ({ contactInfoList }) => {
                             className="modal-body"
                             style={{ overflowX: "auto" }}
                           >
-                           
-                            
                             <table className="table table-bordered">
                               <thead className="fw-300">
                                 <tr className="text-light">
@@ -1173,44 +1177,49 @@ const Dashboard1 = ({ contactInfoList }) => {
                                 </tr>
                               </thead>
                               <tbody>
-                              {isLoading ?(<h6 className="text-center text-light ">Loading</h6>):(<>
-                                {Object.keys(activeUsersByLevel).map(
-                                  (level, index) => (
-                                    <tr key={level}>
-                                      <td className="text-warning text-center">
-                                        {index + 1}
-                                      </td>
-                                      <td
-                                        className=" text-center"
-                                        style={{ color: "#fccb90" }}
-                                      >
-                                        {level}
-                                      </td>
-                                      <td className="text-light text-center">
-                                        {activeUsersByLevel[level].active}
-                                      </td>
-                                      <td
-                                        className="text-center"
-                                        style={{ color: "#fccb90" }}
-                                      >
-                                        {activeUsersByLevel[level].inactive}
-                                      </td>
-                                      <td className="text-light text-center">
-                                        {levelCounts[index]}
-                                      </td>
-                                      <td
-                                        className=" text-center"
-                                        style={{ color: "#fccb90" }}
-                                      >
-                                        {levelRanks[index]}
-                                      </td>
-                                    </tr>
-                                  )
+                                {isLoading ? (
+                                  <h6 className="text-center text-light ">
+                                    Loading
+                                  </h6>
+                                ) : (
+                                  <>
+                                    {Object.keys(activeUsersByLevel).map(
+                                      (level, index) => (
+                                        <tr key={level}>
+                                          <td className="text-warning text-center">
+                                            {index + 1}
+                                          </td>
+                                          <td
+                                            className=" text-center"
+                                            style={{ color: "#fccb90" }}
+                                          >
+                                            {level}
+                                          </td>
+                                          <td className="text-light text-center">
+                                            {activeUsersByLevel[level].active}
+                                          </td>
+                                          <td
+                                            className="text-center"
+                                            style={{ color: "#fccb90" }}
+                                          >
+                                            {activeUsersByLevel[level].inactive}
+                                          </td>
+                                          <td className="text-light text-center">
+                                            {levelCounts[index]}
+                                          </td>
+                                          <td
+                                            className=" text-center"
+                                            style={{ color: "#fccb90" }}
+                                          >
+                                            {levelRanks[index]}
+                                          </td>
+                                        </tr>
+                                      )
+                                    )}
+                                  </>
                                 )}
-                                </>)}
                               </tbody>
                             </table>
-                            
                           </div>
                           <div className="modal-footer"></div>
                         </div>
@@ -1280,10 +1289,10 @@ const Dashboard1 = ({ contactInfoList }) => {
                                   setWithdrawalAmount(e.target.value)
                                 }
                               />
-                              <Button 
-                              disabled={!withdrawalAmount || isProcessing}
+                              <Button
+                                disabled={!withdrawalAmount || isProcessing}
                               >
-                                Withdraw
+                               {withdrawLoading ? "Please wait...":"Withdraw"}
                               </Button>
                             </div>
                           </form>
@@ -1362,32 +1371,40 @@ const Dashboard1 = ({ contactInfoList }) => {
                                           {showTopUpButton ? (
                                             <>
                                               <div>
-                                                <p className="text-white">Select a Package to top up</p>
+                                                <p className="text-white">
+                                                  Select a Package to top up
+                                                </p>
                                                 <div className="select_package_box">
-
-                                                <div className="select_package">
-                                                  <button onClick={() =>
-                                                      setSelectedAmount(500)
-                                                    }
-                                                  >
-                                                    500{" "}
-                                                  <b className="text-xl">{selectedAmount === 500 && "✓"}</b>  
-                                                  </button>
-                                                </div>
-                                                <div className="select_package">
-                                                  <button onClick={() =>
-                                                      setSelectedAmount(1000)
-                                                    }
-                                                  >
-                                                    1000{" "}
-                                                 <b className="text-xl"> 
-                                                  {selectedAmount === 1000 &&"✓"}
-                                                  </b>
-                                                  </button>
-                                                </div>
+                                                  <div className="select_package">
+                                                    <button
+                                                      onClick={() =>
+                                                        setSelectedAmount(500)
+                                                      }
+                                                    >
+                                                      500{" "}
+                                                      <b className="text-xl">
+                                                        {selectedAmount ===
+                                                          500 && "✓"}
+                                                      </b>
+                                                    </button>
+                                                  </div>
+                                                  <div className="select_package">
+                                                    <button
+                                                      onClick={() =>
+                                                        setSelectedAmount(1000)
+                                                      }
+                                                    >
+                                                      1000{" "}
+                                                      <b className="text-xl">
+                                                        {selectedAmount ===
+                                                          1000 && "✓"}
+                                                      </b>
+                                                    </button>
+                                                  </div>
                                                 </div>
                                                 <div>
-                                                  <Button onClick={() =>
+                                                  <Button
+                                                    onClick={() =>
                                                       handleActivateUser(
                                                         selectedAmount
                                                       )
@@ -1397,7 +1414,6 @@ const Dashboard1 = ({ contactInfoList }) => {
                                                   </Button>
                                                 </div>
                                               </div>
-                                              
                                             </>
                                           ) : (
                                             <></>
@@ -1561,7 +1577,10 @@ const Dashboard1 = ({ contactInfoList }) => {
                   ) : (
                     <></>
                   )}
-                  <div className="time_update" style={{paddingBottom:"100px"}}>
+                  <div
+                    className="time_update"
+                    style={{ paddingBottom: "100px" }}
+                  >
                     <IoTimer className="menu_icon" />
                     <h6> {realTimeDate}</h6>
                   </div>
