@@ -377,11 +377,12 @@ const DashboardNavbar = ({ data }) => {
               </ul>
               <div
                 className="d-flex justify-content-start gap-2"
-                style={{ marginLeft: "20px", marginTop: "10px", marginRight: "20px" }}
+                style={{ marginLeft: "20px", marginTop: "10px" }}
               >
-                  <div className="symbol1" onClick={handleLogout}>
-                      <FaPowerOff  />
-                    </div>
+                  
+                    <Button onClick={handleLogout}>
+                      LogOut
+                    </Button>
               </div>
               <p className="text-amber-100 italic ml-3">Version 2.0</p>
             </motion.nav>

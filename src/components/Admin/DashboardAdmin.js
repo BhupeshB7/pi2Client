@@ -7,6 +7,8 @@ import AllFundTransfer from "./AllFundTransfer";
 import { useEffect } from "react";
 import { useState } from "react";
 import AdminBalance from "../../pages/AdminBalance";
+import WithdrawalSummary from "./WithdrawalSummary";
+import DepositSummary from "./DepositSummary";
 
 const DashboardAdmin = () => {
   const [isTokenValid, setIsTokenValid] = useState(true);
@@ -37,6 +39,8 @@ const DashboardAdmin = () => {
         <div>
           <NavbarComponent />
           <Container>
+            <WithdrawalSummary/>
+            <DepositSummary/>
             <UserData />
             <WithdrawalRequests />
             <AllFundTransfer />

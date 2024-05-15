@@ -1,0 +1,62 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Container } from 'react-bootstrap';
+
+function DepositSummary() {
+  const [withdrawalData, setWithdrawalData] = useState({
+    yesterdayAmount: 0,
+    todayAmount: 0
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://mlm-eo5g.onrender.com/api/deposit/allAmounts/summary');
+        setWithdrawalData(response.data);
+      } catch (error) {
+        handleError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+
+    // Cleanup function
+    return () => {
+      // Cancel ongoing requests
+      const source = axios.CancelToken.source();
+      source.cancel('Component unmounted');
+    };
+  }, []);
+
+  const handleError = (error) => {
+    if (axios.isCancel(error)) {
+      console.log('Request canceled:', error.message);
+    } else {
+        setError('Error fetching Deposit Summary:', error.message);
+    }
+  };
+
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <div className='m-2'>
+        <Container className='amountSummary '>
+          <h2 className='underline text-orange-800'>Deposit Summary</h2>
+          <p className="text-amber-700">Yesterday's Amount:<b className='text-md'>{withdrawalData.yesterdayAmount} ₹</b> </p>
+          <p>Today's Amount: <b className='text-md'>{withdrawalData.todayAmount} ₹</b> </p>
+        </Container>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default DepositSummary;

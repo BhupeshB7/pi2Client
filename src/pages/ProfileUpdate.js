@@ -71,11 +71,16 @@ const ProfileUpdate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    if (isDetailsUpdatedOnServer) {
-      alert("You have reached your update limit. Cannot update again.");
+    if(profileData.name === "" || profileData.email === "" || profileData.phone === ""){
+      alert("Please enter all the details");
       setIsSubmitting(false);
       return;
     }
+    // if (isDetailsUpdatedOnServer) {
+    //   alert("You have reached your update limit. Cannot update again.");
+    //   setIsSubmitting(false);
+    //   return;
+    // }
 
     if (updateCount >= maxUpdateLimit) {
       alert("You have reached your update limit. Cannot update again.");
@@ -144,7 +149,12 @@ const ProfileUpdate = () => {
       </h6>
     );
   }
-  const remainingUpdate = maxUpdateLimit - updateCount;
+  let remainingUpdate;
+  if (updateCount > maxUpdateLimit) {
+    remainingUpdate = 0;
+} else {
+    remainingUpdate = maxUpdateLimit - updateCount;
+}
   return (
     <div  >
       <Background/>

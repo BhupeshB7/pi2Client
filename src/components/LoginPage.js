@@ -121,6 +121,7 @@ const LoginForm = ({ setToken }) => {
                     alt="password"
                     style={{ marginLeft: "20px" }}
                   />
+        <div className="input__password">
 
                   <input
                     type={password1 ? "password" : "text"}
@@ -129,7 +130,7 @@ const LoginForm = ({ setToken }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <div className="showPassword" style={{ marginLeft: "-20px" }}>
+                  <div className="showPassword" >
                     {password1 ? (
                       <img
                         src="https://cdn-icons-png.flaticon.com/128/5618/5618479.png"
@@ -148,6 +149,7 @@ const LoginForm = ({ setToken }) => {
                       />
                     )}
                   </div>
+        </div>
                 </div>
                 <div className="form_input">
                   {/* <ReCAPTCHA

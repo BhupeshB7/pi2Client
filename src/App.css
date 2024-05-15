@@ -1233,6 +1233,19 @@ input:-webkit-autofill {
   color: rgb(255, 221, 120);
   font-size: 14px;
 }
+.input__password{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showPassword{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 2%;
+}
 .topUPBg {
   /* background:   radial-gradient(at left top, rgb(39, 39, 42), rgb(16, 185, 129), rgb(229, 229, 229)); */
   height: 100vh;
@@ -2189,4 +2202,17 @@ color: #f0ff80;
   right: 0;
   left: 0;
 
+}
+.amountSummary{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  margin:auto;
+  border-radius: 10px;
+  max-width: 300px;
 }
