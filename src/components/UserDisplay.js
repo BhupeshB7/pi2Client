@@ -316,33 +316,31 @@ const Dashboard1 = ({ contactInfoList }) => {
   }, [data.userId]);
 
   useEffect(() => {
-    // fetchTopupAmount(data.userId);
-    const fetchTopupAmount = async (userID) => {
+    const fetchTopupAmount = async () => {
       try {
         const response = await axios.get(
-          `https://mlm-eo5g.onrender.com/api/deposit/topUpuserAmount/${userID}`
+          `https://mlm-eo5g.onrender.com/api/deposit/topUpuserAmount/${data.userId}`
         );
         console.log("API Response:", response.data);
         console.log(data.userId);
-
+  
         const { deposit } = response.data;
-
+  
         if (!deposit) {
           console.log("User not found!");
           return;
         }
-
+  
         const { depositAmount, isApproved } = deposit;
         console.log("Deposit Amount:", depositAmount);
-        // setTopUpAmount(response.data);
         setTopUpAmount(depositAmount);
         setIsApproved(isApproved);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchTopupAmount(data.userId);
-    // console.log(data.userId)
+  
+    fetchTopupAmount(); // Call the function inside useEffect directly
   }, [data.userId]);
 
   useEffect(() => {
@@ -1144,7 +1142,7 @@ const Dashboard1 = ({ contactInfoList }) => {
                       aria-hidden="true"
                     >
                       <div className="modal-dialog ">
-                        <div className="modal-content teamStructure_background">
+                        <div className="modal-content teamStructure_background  bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_2px,transparent_2px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:21px_30px]">
                           <div className="modal-header">
                             <h5
                               className="modal-title text-warning"

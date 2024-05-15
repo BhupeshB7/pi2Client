@@ -1437,7 +1437,7 @@ color: green !important;
   top: -350px !important;
 }
 .teamStructure_background {
-  background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+  /* background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%); */
   color: rgb(211, 246, 211);
 }
 .CarouselImage {
@@ -2180,4 +2180,12 @@ color: #f0ff80;
 /* profile update */
 .profile_update input{
   padding: 6px;
+}
+.bottomMenu{
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  
 }

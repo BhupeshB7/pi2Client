@@ -189,12 +189,12 @@ const LoginForm = ({ setToken }) => {
                   <h6 className="text-center text-amber-100 m-2">Please verify the captcha first.</h6>
                 )}
                 <Link
-                  to={"/register"}
+                  to={"/v2/register"}
                   style={{ color: "#eee", marginLeft: "8px" }}
                 >
                   Don't have an account yet?{" "}
                   <a
-                    href="/register"
+                    href="/v2/register"
                     style={{ textDecoration: "underline", color: "gray" }}
                   >
                     SignUp
