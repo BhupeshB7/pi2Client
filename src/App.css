@@ -2216,3 +2216,24 @@ color: #f0ff80;
   border-radius: 10px;
   max-width: 300px;
 }
+.resetdailyIncome_box{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  margin:auto;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  max-width: 400px;
+}
+.resetdailyIncome_box p{
+  font-family: "Schibsted Grotesk", sans-serif !important;
+  font-weight: 600;
+  font-size: 18px !important;
+}
+.resetdailyIncome_box h6{
+  font-family: "Schibsted Grotesk", sans-serif !important;
+  font-weight: 500;
+  font-size: 15px !important;
+}

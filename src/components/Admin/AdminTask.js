@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import NavbarComponent from "./NavbarComponent";
 import { Button, Container } from "react-bootstrap";
 import AdminDeposit from "./AdminDeposit";
+import DailyIncomeReset from "./DailyIncomeReset";
 const AdminTask = () => {
   const [tasks, setTasks] = useState([]);
   const [isTokenValid, setIsTokenValid] = useState(true);
@@ -96,6 +97,7 @@ const AdminTask = () => {
     <div>
       <Container>
         <NavbarComponent />
+        <Container className="mt-3">
         <Formik
           initialValues={{
             title: "",
@@ -166,6 +168,9 @@ const AdminTask = () => {
             </div>
           )}
         </Formik>
+        </Container>
+
+        <DailyIncomeReset/>
         <div className="task_details">
           <h6 className="m-2 text-primary">TASK LIST</h6>
           <ul>
