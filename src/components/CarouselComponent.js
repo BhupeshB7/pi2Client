@@ -64,7 +64,7 @@ function ControlledCarousel() {
   }, []);
 
   return (
-    <Container fluid className='p-1 w-100 h-25% pt-5'>
+    <Container fluid className='p-1 w-100 h-25% '>
       <Carousel activeIndex={index} onSelect={handleSelect} className='carousel'>
         {images.map((img, i) => (
           <Carousel.Item key={i} className='mt-3'>

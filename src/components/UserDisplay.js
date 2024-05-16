@@ -788,7 +788,8 @@ const Dashboard1 = ({ contactInfoList }) => {
                   {/* Dashboard-Navbar */}
 
                   {/*  */}
-                  <div className="container-fluid dashboard">
+                  <TimerComponent activationTime={data.activationTime} />
+                  <div className="container-fluid dashboard pt-5">
                   <div className="symbol1 logOut_Btton" onClick={handleLogout}>
                       <FaPowerOff  />
                     </div>
