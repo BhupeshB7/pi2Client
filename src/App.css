@@ -1872,7 +1872,8 @@ label {
 .timer-container b {
   font-size: 28px !important;
   font-weight: 700;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  /* font-family: Georgia, "Times New Roman", Times, serif; */
+  font-family: "Schibsted Grotesk", sans-serif !important;
   color: black !important;
   word-spacing: 4px !important;
 }
@@ -1891,6 +1892,7 @@ label {
   margin: 4px;
   padding: 4px;
   border-radius: 7px;
+  font-family: "Schibsted Grotesk", sans-serif !important;
 }
 .ModalOverlay {
   position: fixed;
