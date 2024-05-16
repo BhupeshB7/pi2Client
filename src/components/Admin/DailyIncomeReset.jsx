@@ -10,7 +10,26 @@ const DailyIncomeReset = () => {
     const resetConfirm = window.confirm(
       "Are you sure you want to reset daily income?"
     );
+    // Get current time in IST
+    const currentTime = new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Kolkata",
+    });
+    const hours = new Date(currentTime).getHours();
+    const minutes = new Date(currentTime).getMinutes();
 
+    // Check if current time is within the allowed range (10:30 PM to 12:30 AM)
+    const isAllowedTime =
+      (hours === 22 && minutes >= 30) || (hours === 0 && minutes <= 30);
+
+    if (!isAllowedTime) {
+      setErrorMessage(
+        "Daily income can only be reset between 10:30 PM and 12:30 AM IST."
+      );
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 6000);
+      return;
+    }
     if (resetConfirm) {
       try {
         setIsReset(true);
@@ -19,9 +38,9 @@ const DailyIncomeReset = () => {
         );
         setSuccessMessage(response.data.message); // Setting success message
         setErrorMessage("");
-        setTimeout(()=>{
-            setSuccessMessage("");
-        },5000)
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 5000);
       } catch (error) {
         setIsReset(false);
         if (
@@ -33,9 +52,9 @@ const DailyIncomeReset = () => {
         } else {
           setErrorMessage("An error occurred while resetting daily income.");
         }
-        setTimeout(()=>{
-            setErrorMessage("");
-        },5000)
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 5000);
       } finally {
         setIsReset(false);
       }
@@ -48,10 +67,14 @@ const DailyIncomeReset = () => {
         <div className="resetdailyIncome_box">
           <p className="text-zinc-600 text-start ">Reset Daily Income</p>
           {successMessage && (
-            <h6 className="text-green-800 text-start bg-green-100 p-2 m-1">{successMessage}</h6>
+            <h6 className="text-green-800 text-start bg-green-100 p-2 m-1">
+              {successMessage}
+            </h6>
           )}
           {errorMessage && (
-            <h6 className="text-red-700 text-start bg-red-100 p-2 m-1">{errorMessage}</h6>
+            <h6 className="text-red-700 text-start bg-red-100 p-2 m-1">
+              {errorMessage}
+            </h6>
           )}
           <Button onClick={resetDailyIncome} className="btn btn-primary">
             {isReset ? "please wait..." : "Reset"}
