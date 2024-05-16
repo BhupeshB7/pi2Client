@@ -21,16 +21,17 @@ const DailyIncomeReset = () => {
     const isAllowedTime =
       (hours === 22 && minutes >= 30) || (hours === 0 && minutes <= 30);
 
-    if (!isAllowedTime) {
-      setErrorMessage(
-        "Daily income can only be reset between 10:30 PM and 12:30 AM IST."
-      );
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 6000);
-      return;
-    }
+    
     if (resetConfirm) {
+        if (!isAllowedTime) {
+            setErrorMessage(
+              "Daily income can only be reset between 10:30 PM and 12:30 AM IST."
+            );
+            setTimeout(() => {
+              setErrorMessage("");
+            }, 6000);
+            return;
+          }
       try {
         setIsReset(true);
         const response = await axios.put(
