@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Container } from "react-bootstrap";
 import Button from "../Home/Button";
 import axios from "axios";
-const DailyIncomeReset = () => {
+const  DailyIncomeReset = () => {
   const [isReset, setIsReset] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,13 +19,13 @@ const DailyIncomeReset = () => {
 
     // Check if current time is within the allowed range (10:30 PM to 12:30 AM)
     const isAllowedTime =
-      (hours === 22 && minutes >= 30) || (hours === 0 && minutes <= 30);
+      (hours === 22 && minutes >= 30) || (hours === 6 && minutes <= 30);
 
     
     if (resetConfirm) {
         if (!isAllowedTime) {
             setErrorMessage(
-              "Daily income can only be reset between 10:30 PM and 12:30 AM IST."
+              "Daily income can only be reset between 10:30 PM and 06:30 AM IST."
             );
             setTimeout(() => {
               setErrorMessage("");

@@ -219,7 +219,7 @@ const TimerComponent = ({ activationTime }) => {
         transition={{ duration: 0.5 }}
          >S</motion.h6>
         </div>
-      )}
+      )}  
     </div>
   );
 };
