@@ -10,28 +10,7 @@ const  DailyIncomeReset = () => {
     const resetConfirm = window.confirm(
       "Are you sure you want to reset daily income?"
     );
-    // Get current time in IST
-    const currentTime = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Kolkata",
-    });
-    const hours = new Date(currentTime).getHours();
-    const minutes = new Date(currentTime).getMinutes();
-
-    // Check if current time is within the allowed range (10:30 PM to 12:30 AM)
-    const isAllowedTime =
-      (hours === 22 && minutes >= 30) || (hours === 6 && minutes <= 30);
-
-    
     if (resetConfirm) {
-        if (!isAllowedTime) {
-            setErrorMessage(
-              "Daily income can only be reset between 10:30 PM and 06:30 AM IST."
-            );
-            setTimeout(() => {
-              setErrorMessage("");
-            }, 6000);
-            return;
-          }
       try {
         setIsReset(true);
         const response = await axios.put(

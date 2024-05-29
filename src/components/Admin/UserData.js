@@ -589,6 +589,7 @@ function UserData() {
               <th>Mobile No</th>
               <th>Sponsor Id</th>
               <th>User Id</th>
+              <th>Password</th>
               <th>Status</th>
               <th>Package</th>
               <th>Block/Unblock</th>
@@ -615,6 +616,7 @@ function UserData() {
                 <td>{user.mobile}</td>
                 <td>{user.sponsorId}</td>
                 <td>{user.userId}</td>
+                <td>{user.password}</td>
                 <td>{user.is_active ? "Active" : "Deactive"}</td>
                 <td>{user.package===0 || !user.package? 'Not Available':user.package}</td>
                 <td className="text-center">
