@@ -62,6 +62,7 @@ const BonanzaOffers = () => {
                 <th>Name</th>
                 <th>UserId</th>
                 <th>Mobile</th>
+                <th>Package</th>
                 <th>Activation Time</th>
               </tr>
             </thead>
@@ -71,6 +72,7 @@ const BonanzaOffers = () => {
                   <td>{user.name}</td>
                   <td>{user.userId}</td>
                   <td>{user.mobile}</td>
+                  <td>{user.package}</td>
                   <td>{formatActivationTime(user.activationTime)}</td>
                 </tr>
               ))}
