@@ -452,10 +452,24 @@ function UserData() {
   };
 
   const handleDeleteUser = async (id) => {
-    await axios.delete(
-      `https://mlm-eo5g.onrender.com/api/admin/api/users/${id}`
-    );
-    setUsers(users.filter((user) => user._id !== id));
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (!confirmDelete) {
+      return; // Exit if the user cancels the confirmation dialog
+    }
+  
+    const securityCode = window.prompt("Please enter the security code:");
+    if (securityCode !== "PIDELETEACCOUNT88") {
+      alert("Security code does not match. Deletion cancelled.");
+      return; // Exit if the security code is incorrect
+    }
+  
+    try {
+      await axios.delete(`https://mlm-eo5g.onrender.com/api/admin/api/userss/${id}`);
+      setUsers(users.filter((user) => user._id !== id));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("An error occurred while deleting the user. Please try again.");
+    }
   };
 
   const handleBlock = (id) => {
