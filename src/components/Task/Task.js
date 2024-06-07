@@ -85,9 +85,10 @@ const Task = () => {
 
     fetchTask();
   }, [taskId, userId]);
+  
 
-  const startTimer = (videoLink) => {
-    window.open(videoLink,'_blank');
+  const startTimer = () => {
+    // window.open(videoLink,'_blank');
     setTimerActive(true);
     // Set the timer duration in seconds (e.g., 120 seconds)
     const timerDuration = 10;
@@ -116,7 +117,18 @@ const Task = () => {
     }
   };
 
+  function getVideoID(videoLink) {
+    const prefix = "https://youtu.be/";
+    if (videoLink.startsWith(prefix)) {
+        return videoLink.substring(prefix.length);
+    } else {
+       return videoLink;
+    }
+}
 
+// Example usage
+const videoLink = task.videoLink;
+const taskVideoID = getVideoID(videoLink);
   if (!task) {
     return <h6 className='text-center' style={{ marginTop: '-70px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100%' }}><img src={spinner} alt="spinner" height="90px" width="90px" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} /></h6>;
   }
@@ -124,9 +136,22 @@ const Task = () => {
     <div className=' task_fluid_container'>
         <ParticleComponent/>
       <h5 className='text-light' style={{ textDecoration: 'underline', marginTop:'50px', }}>{task.title}</h5>
+      {/* <h1>YouTube Video Player</h1>
+      <div className="video-responsive">
+        <iframe
+          width="853"
+          height="480"
+          src={`https://www.youtube.com/embed/${task.videoLink}`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="Embedded youtube"
+        />
+      </div> */}
       {/* <h3>{task.videoLink}</h3> */}
+        {/* <h5 className='text-light'>VIdeo Task Link is: {taskVideoID}</h5> */}
       <div className='video_container'>
-        <iframe width={330} height={200} style={{ marginTop: '-62px' }} title={task.title} src={`https://www.youtube.com/embed/VIDEO_ID_HERE?autoplay=1&mute=1`} // Replace VIDEO_ID_HERE with the actual video ID
+        <iframe width={330} height={200} style={{ marginTop: '-62px' }} title={task.title} src={`https://www.youtube.com/embed/${taskVideoID}?autoplay=1&mute=1`} // Replace VIDEO_ID_HERE with the actual video ID
     />
       </div>
 
@@ -134,10 +159,10 @@ const Task = () => {
 
       {!userTaskStatus && !timerActive && (
         <>
-        <button onClick={()=>startTimer(task.videoLink)} style={{ background:'transparent', border:'none'}}>
+        <button onClick={()=>startTimer()} style={{ background:'transparent', border:'none'}}>
         <div className="box-3">
             <div className="taskbtn  btn-three "style={{width:'230px'}}>
-              <h6 className='p-3' type='button'   onClick={()=>startTimer(task.videoLink)} style={{ background:'transparent', border:'none'}}>START</h6>
+              <h6 className='p-3' type='button'   onClick={()=>startTimer()} style={{ background:'transparent', border:'none'}}>START</h6>
             </div>
           </div>
         </button>

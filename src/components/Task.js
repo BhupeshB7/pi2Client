@@ -133,6 +133,18 @@ async function updateWallet(userId) {
       <div className="task_container-2" style={{display:"flex", justifyContent:"center"}}>
       <div className='task_container'>
         <h4 style={{color:" rgb(186, 183, 183)", textAlign:"center"}}>{title}</h4>
+        <h1>YouTube Video Player</h1>
+      <div className="video-responsive">
+        <iframe
+          width="853"
+          height="480"
+          src={`https://www.youtube.com/embed/VIDEO_ID`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="Embedded youtube"
+        />
+      </div>
         <div className="video" style={{marginLeft:"15px"}}>
         <iframe id={`video-${currentVideoIndex}.`} title={_id} src={videoLink} onClick={() => handleVideoClick(currentVideoIndex)} height="190px" width="300px"/>
            {/* <button onClick={()=>handleButtonClickUrl(videoLink)}>

@@ -382,7 +382,7 @@ function UserData() {
   const getUsers = async (page = 1) => {
     try {
       const response = await axios.get(
-        `https://mlm-eo5g.onrender.com/api/admin/api/users?page=${page}&search=${searchQuery}&itemsPerPage=${itemsPerPage}`
+        `https://mlm-eo5g.onrender.com/api/admin/api/users/account?page=${page}&search=${searchQuery}&itemsPerPage=${itemsPerPage}`
       );
       const { users, totalPages } = response.data;
       setUsers(users);
