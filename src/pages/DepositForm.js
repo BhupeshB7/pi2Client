@@ -7,7 +7,7 @@
 // <td>kumaromprakashhdhdksks@axl</td>
 
 import React, { useState } from "react";
-import QRCODE from "../assets/QRCODE4.jpg";
+import QRCODE from "../assets/QRCODE5.jpg";
 import { Button, Container, Spinner, Table, Form } from "react-bootstrap";
 const DepositForm = () => {
   const [loading, setLoading] = useState(false);
@@ -152,7 +152,7 @@ const DepositForm = () => {
           }}
         />
       </div>
-      <Container className="pt-3">
+      {/* <Container className="pt-3">
         <Table striped bordered hover>
           <thead className="text-warning text-center">
             <tr>
@@ -175,7 +175,7 @@ const DepositForm = () => {
             </tr>
           </tbody>
         </Table>
-      </Container>
+      </Container> */}
 
       <form onSubmit={handleSubmit} className="deposit_box">
         <div>
