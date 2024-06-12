@@ -25,7 +25,7 @@ const TeamStructureModal = () => {
     }
     setLoading(true); // Show loading spinner
     axios
-      .get(`https://mlm-eo5g.onrender.com/api/users/teamStructure/${userId}`)
+      .get(`https://mlm-gc1b.onrender.com/api/users/teamStructure/${userId}`)
       .then((response) => {
         setActiveUsersByLevel(response.data);
         setShowModal(true); // Show modal after fetching team structure

@@ -19,7 +19,7 @@ function ReTopup({ topupWallet }) {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://mlm-eo5g.onrender.com/api/auth/checkActivation/${usersID}`
+          `https://mlm-gc1b.onrender.com/api/auth/checkActivation/${usersID}`
         );
         setMessage(response.data.message);
         setReTopUpRequired(response.data.reTopUpRequired);
@@ -63,8 +63,8 @@ function ReTopup({ topupWallet }) {
     }
     try {
       const response = await fetch(
-        `https://mlm-eo5g.onrender.com/api/deposit/topUpUserID/${userId}`,
-        // `https://mlm-eo5g.onrender.com/api/deposit/topUpUserID/${data.userId}`,
+        `https://mlm-gc1b.onrender.com/api/deposit/topUpUserID/${userId}`,
+        // `https://mlm-gc1b.onrender.com/api/deposit/topUpUserID/${data.userId}`,
         {
           method: "POST",
           headers: {
@@ -109,7 +109,7 @@ function ReTopup({ topupWallet }) {
   //     }
   //     setLoading(true); // Set loading state when sending request
   //     const response = await fetch(
-  //       `https://mlm-eo5g.onrender.com/api/deposit/topUpUserID/${userId}`,
+  //       `https://mlm-gc1b.onrender.com/api/deposit/topUpUserID/${userId}`,
   //       {
   //         method: "POST",
   //         headers: {

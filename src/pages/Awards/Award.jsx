@@ -20,7 +20,7 @@ const Award = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://mlm-eo5g.onrender.com/api/gift/gift-rewards/mlm/${userId}?page=${currentPage}`,
+        `https://mlm-gc1b.onrender.com/api/gift/gift-rewards/mlm/${userId}?page=${currentPage}`,
         {
           // params: { userId, page: currentPage, pageSize: 10 },
         }
@@ -44,7 +44,7 @@ const Award = () => {
     try {
       // const response = await fetch("http://localhost:5000/api/gift/checkCode", {
       const response = await fetch(
-        "https://mlm-eo5g.onrender.com/api/gift/checkCode/mlm",
+        "https://mlm-gc1b.onrender.com/api/gift/checkCode/mlm",
         {
           method: "POST",
           headers: {

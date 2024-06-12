@@ -13,7 +13,7 @@ function DepositSummary() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://mlm-eo5g.onrender.com/api/deposit/allAmounts/summary');
+        const response = await axios.get('https://mlm-gc1b.onrender.com/api/deposit/allAmounts/summary');
         setWithdrawalData(response.data);
       } catch (error) {
         handleError(error);

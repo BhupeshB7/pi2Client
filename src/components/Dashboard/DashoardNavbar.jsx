@@ -134,7 +134,7 @@ const DashboardNavbar = ({ data }) => {
   //   const fetchsponsors = async () => {
   //     try {
   //       const response = await axios.get(
-  //         `https://mlm-eo5g.onrender.com/api/direct/${data.userId}`
+  //         `https://mlm-gc1b.onrender.com/api/direct/${data.userId}`
   //       );
   //       setSponsors(response.data);
   //     } catch (error) {
@@ -149,7 +149,7 @@ const DashboardNavbar = ({ data }) => {
     const fetchSponsors = async () => {
       try {
         setLoadingNext(true);
-        const response = await axios.get(`https://mlm-eo5g.onrender.com/api/direct/${data.userId}`);
+        const response = await axios.get(`https://mlm-gc1b.onrender.com/api/direct/${data.userId}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,
@@ -170,7 +170,7 @@ const DashboardNavbar = ({ data }) => {
       setLoadingPrev(true);
       try {
         const nextPage = pagination.currentPage - 1;
-        const response = await axios.get(`https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
+        const response = await axios.get(`https://mlm-gc1b.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,
@@ -189,7 +189,7 @@ const DashboardNavbar = ({ data }) => {
       setLoadingNext(true);
       try {
         const nextPage = pagination.currentPage + 1;
-        const response = await axios.get(`https://mlm-eo5g.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
+        const response = await axios.get(`https://mlm-gc1b.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,
