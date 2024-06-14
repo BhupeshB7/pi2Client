@@ -174,7 +174,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://mlm-gc1b.onrender.com/api/users/profile",
+          "https://piserver-ljd1.onrender.com/api/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -224,9 +224,9 @@ const Dashboard1 = ({ contactInfoList }) => {
   useEffect(() => {
     const fetchIncome = async () => {
       try {
-        // const response = await fetch(`https://mlm-gc1b.onrender.com/api/daily-level-income/users/${data.userId}`);
+        // const response = await fetch(`https://piserver-ljd1.onrender.com/api/daily-level-income/users/${data.userId}`);
         const response = await fetch(
-          `https://mlm-gc1b.onrender.com/api/daily-level-income/users/${data.userId}`,
+          `https://piserver-ljd1.onrender.com/api/daily-level-income/users/${data.userId}`,
           {
             headers: {
               "Cache-Control": "no-cache",
@@ -248,7 +248,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   // useEffect(() => {
   //   axios
   //     .get(
-  //       `https://mlm-gc1b.onrender.com/api/users/teamStructureRank/${data.userId}`
+  //       `https://piserver-ljd1.onrender.com/api/users/teamStructureRank/${data.userId}`
   //     )
   //     .then((response) => {
   //       const data = response.data;
@@ -267,7 +267,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   useEffect(() => {
     axios
       .get(
-        `https://mlm-gc1b.onrender.com/api/users/teamStructureRank/${data.userId}`
+        `https://piserver-ljd1.onrender.com/api/users/teamStructureRank/${data.userId}`
       )
       .then((response) => {
         const responseData = response.data;
@@ -287,7 +287,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     setIsTeamLoading(true);
     axios
       .get(
-        `https://mlm-gc1b.onrender.com/api/users/teamStructure/${data.userId}`
+        `https://piserver-ljd1.onrender.com/api/users/teamStructure/${data.userId}`
       )
       .then((response) => {
         setActiveUsersByLevel(response.data);
@@ -306,7 +306,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     const fetchTeamStructure = async (userId) => {
       try {
         const response = await axios.get(
-          `https://mlm-gc1b.onrender.com/api/users/team/${userId}`
+          `https://piserver-ljd1.onrender.com/api/users/team/${userId}`
         );
         setTeamStructure(response.data);
         setCurrentDownline(response?.data?.downline);
@@ -321,7 +321,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     const fetchTopupAmount = async () => {
       try {
         const response = await axios.get(
-          `https://mlm-gc1b.onrender.com/api/deposit/topUpuserAmount/${data.userId}`
+          `https://piserver-ljd1.onrender.com/api/deposit/topUpuserAmount/${data.userId}`
         );
         console.log("API Response:", response.data);
         console.log(data.userId);
@@ -360,7 +360,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     setIsProcessing(true);
     const amount = Number(withdrawalAmount); // convert string to number
     fetch(
-      `https://mlm-gc1b.onrender.com/api/withdraw/user/${data.userId}`,
+      `https://piserver-ljd1.onrender.com/api/withdraw/user/${data.userId}`,
       // `http://localhost:5500/api/withdraw/user/${data.userId}`,
       {
         // fetch(`http://localhost:5000/api/withdraw/user/${data.userId}`, {
@@ -407,7 +407,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   //   event.preventDefault();
   //   try {
   //     const response = await axios.post(
-  //       `https://mlm-gc1b.onrender.com/api/transfer/${data._id}`,
+  //       `https://piserver-ljd1.onrender.com/api/transfer/${data._id}`,
   //       { amount: parseFloat(amount) }
   //     );
   //     setMessage(response.data.message);
@@ -420,7 +420,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `https://mlm-gc1b.onrender.com/api/transfer/${data._id}`,
+        `https://piserver-ljd1.onrender.com/api/transfer/${data._id}`,
         { amount: parseFloat(amount) }
       );
 
@@ -444,7 +444,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   const handleClick = async () => {
     try {
       const response = await fetch(
-        "https://mlm-gc1b.onrender.com/api/deposit/topUpActivate/",
+        "https://piserver-ljd1.onrender.com/api/deposit/topUpActivate/",
         {
           method: "POST",
           headers: {
@@ -481,7 +481,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   //   }
   //   try {
   //     const response = await fetch(
-  //       `https://mlm-gc1b.onrender.com/api/deposit/topUpUserID/${data.userId}`,
+  //       `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${data.userId}`,
   //       {
   //         method: "POST",
   //         headers: {
@@ -526,8 +526,8 @@ const Dashboard1 = ({ contactInfoList }) => {
     }
     try {
       const response = await fetch(
-        `https://mlm-gc1b.onrender.com/api/deposit/topUpUserID/${data.userId}`,
-        // `https://mlm-gc1b.onrender.com/api/deposit/topUpUserID/${data.userId}`,
+        `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${data.userId}`,
+        // `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${data.userId}`,
         {
           method: "POST",
           headers: {

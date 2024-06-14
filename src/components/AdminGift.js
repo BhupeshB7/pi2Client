@@ -12,7 +12,7 @@ const AdminGift = ({title,endpoint}) => {
   const handleGenerateCode = async () => {
     try {
       // gift/generateCode
-      const response = await fetch(`https://mlm-gc1b.onrender.com/api/${endpoint}`, {
+      const response = await fetch(`https://piserver-ljd1.onrender.com/api/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

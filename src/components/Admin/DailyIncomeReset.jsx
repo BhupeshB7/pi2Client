@@ -14,7 +14,7 @@ const  DailyIncomeReset = () => {
       try {
         setIsReset(true);
         const response = await axios.put(
-          "https://mlm-gc1b.onrender.com/api/task/resetDailyIncome"
+          "https://piserver-ljd1.onrender.com/api/task/resetDailyIncome"
         );
         setSuccessMessage(response.data.message); // Setting success message
         setErrorMessage("");

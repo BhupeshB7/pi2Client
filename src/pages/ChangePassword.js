@@ -17,7 +17,7 @@ function ChangePassword() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://mlm-gc1b.onrender.com/api/users/profile",
+        "https://piserver-ljd1.onrender.com/api/users/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ function ChangePassword() {
     if (!hasError) {
       try {
         const response = await fetch(
-          "https://mlm-gc1b.onrender.com/api/change-password",
+          "https://piserver-ljd1.onrender.com/api/change-password",
           {
             method: "POST",
             headers: {

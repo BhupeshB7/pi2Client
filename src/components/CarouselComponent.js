@@ -53,7 +53,7 @@ function ControlledCarousel() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('https://mlm-gc1b.onrender.com/images');
+        const response = await axios.get('https://piserver-ljd1.onrender.com/images');
         setImages(response.data);
       } catch (error) {
         console.error(error);

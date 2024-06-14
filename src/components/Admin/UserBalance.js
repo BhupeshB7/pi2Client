@@ -87,7 +87,7 @@ function UserBalance() {
     setAbortController(newController);
 
     try {
-      await axios.post('https://mlm-gc1b.onrender.com/api/auth/resetBalances', null, { signal: newController.signal });
+      await axios.post('https://piserver-ljd1.onrender.com/api/auth/resetBalances', null, { signal: newController.signal });
       setAlertVariant('success');
       setAlertMessage('Balances reset successfully.');
     } catch (error) {

@@ -10,7 +10,7 @@ const NewUsersChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://mlm-gc1b.onrender.com/api/users/new/users-created');
+        const response = await axios.get('https://piserver-ljd1.onrender.com/api/users/new/users-created');
         setChartData(response.data);
       } catch (error) {
         console.error(error);

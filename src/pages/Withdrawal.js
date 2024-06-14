@@ -12,7 +12,7 @@
 // const navigate = useNavigate();
 //   useEffect(() => {
 //     const fetchData = async () => {
-//       const response = await fetch('https://mlm-gc1b.onrender.com/api/users/profile', {
+//       const response = await fetch('https://piserver-ljd1.onrender.com/api/users/profile', {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },
@@ -26,7 +26,7 @@
 //   }, [token]);
 
 //   useEffect(() => {
-//     axios.get(`https://mlm-gc1b.onrender.com/api/withdrawals/${data.userId}`)
+//     axios.get(`https://piserver-ljd1.onrender.com/api/withdrawals/${data.userId}`)
 //       .then(response => setWithdrawalRequest(response.data))
 //       .catch(error => console.log(error));
 //   }, [data.userId]);
@@ -175,7 +175,7 @@ function Withdrawal() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://mlm-gc1b.onrender.com/api/users/profile', {
+        const response = await fetch('https://piserver-ljd1.onrender.com/api/users/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -193,7 +193,7 @@ function Withdrawal() {
 
   useEffect(() => {
     if (data.userId) {
-      axios.get(`https://mlm-gc1b.onrender.com/api/withdraw/withdrawals/${data.userId}`)
+      axios.get(`https://piserver-ljd1.onrender.com/api/withdraw/withdrawals/${data.userId}`)
         .then(response => setWithdrawalRequest(response.data))
         .catch(error => console.log(error));
     }

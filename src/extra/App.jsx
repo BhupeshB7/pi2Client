@@ -3,7 +3,7 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import { Button, Form } from 'react-bootstrap';
 import DisplayImage from './DisplayImage';
-// https://mlm-gc1b.onrender.com
+// https://piserver-ljd1.onrender.com
 const FileInput = ({userId}) => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
@@ -15,7 +15,7 @@ const FileInput = ({userId}) => {
 
   useEffect(() => {
     // Check if the image exists by making an API request
-    axios.get(`https://mlm-gc1b.onrender.com/api/image/${userId}`)
+    axios.get(`https://piserver-ljd1.onrender.com/api/image/${userId}`)
       .then(() => {
         // Image found
         setImageFound(true);
@@ -44,7 +44,7 @@ const FileInput = ({userId}) => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post(`https://mlm-gc1b.onrender.com/api/image/upload/${userId}`, formData, {
+      const response = await axios.post(`https://piserver-ljd1.onrender.com/api/image/upload/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -132,7 +132,7 @@ export default FileInput;
 
 //   useEffect(() => {
 //     // Check if the image exists by making an API request
-//     axios.get(`https://mlm-gc1b.onrender.com/api/image/${userId}`)
+//     axios.get(`https://piserver-ljd1.onrender.com/api/image/${userId}`)
 //       .then(() => {
 //         // Image found
 //         setImageFound(true);
@@ -161,7 +161,7 @@ export default FileInput;
 //     formData.append('image', file);
 
 //     try {
-//       const response = await axios.post(`https://mlm-gc1b.onrender.com/api/image/upload/${userId}`, formData, {
+//       const response = await axios.post(`https://piserver-ljd1.onrender.com/api/image/upload/${userId}`, formData, {
 //         headers: {
 //           'Content-Type': 'multipart/form-data',
 //         },

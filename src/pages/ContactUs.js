@@ -27,7 +27,7 @@ function ContactForm() {
     };
 
     try {
-      const response = await axios.post('https://mlm-gc1b.onrender.com/api/send-email', dataToSubmit);
+      const response = await axios.post('https://piserver-ljd1.onrender.com/api/send-email', dataToSubmit);
 
       if (response.status === 200) {
         alert('Contact us form submitted!');

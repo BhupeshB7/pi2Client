@@ -47,7 +47,7 @@ const AdminLiveGame = () => {
     if (selectedColor && selectedNumber && selectedSize) {
       // Send the data to the backend along with the session ID
       axios
-        .post("https://mlm-gc1b.onrender.com/api/saveSelection", {
+        .post("https://piserver-ljd1.onrender.com/api/saveSelection", {
           sessionId: newSessionId,
           color: selectedColor,
           number: selectedNumber,

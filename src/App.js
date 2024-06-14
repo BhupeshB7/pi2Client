@@ -58,7 +58,7 @@ function App() {
 
   useEffect(() => {
     // Fetch contact info details on component mount
-    axios.get('https://mlm-gc1b.onrender.com/api/contactInfo').then((response) => setContactInfoList(response.data));
+    axios.get('https://piserver-ljd1.onrender.com/api/contactInfo').then((response) => setContactInfoList(response.data));
   }, []);
 
   useEffect(() => {

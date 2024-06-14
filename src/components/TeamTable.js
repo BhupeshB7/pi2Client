@@ -8,7 +8,7 @@ const TeamTable = ({ userId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://mlm-gc1b.onrender.com/api/teamTaskMember/${userId}`);
+        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/teamTaskMember/${userId}`);
         setTeamStructure(response.data);
         setCurrentMember(response.data);
       } catch (error) {

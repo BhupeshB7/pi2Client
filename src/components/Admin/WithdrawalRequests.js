@@ -11,7 +11,7 @@ function  WithdrawalRequests() {
   useEffect(() => {
     // Fetch data from your backend API with pagination and search
     fetch(
-      `https://mlm-gc1b.onrender.com/api/withdraw/withdrawals?search=${withdrawalQuerySearch}&page=${currentPage}`
+      `https://piserver-ljd1.onrender.com/api/withdraw/withdrawals?search=${withdrawalQuerySearch}&page=${currentPage}`
       // http://localhost:5000/api/withdraw/withdrawals
     )
       .then((response) => response.json())
@@ -30,7 +30,7 @@ function  WithdrawalRequests() {
   const handleApprove = async (id) => {
     try {
       const response = await axios.put(
-        `https://mlm-gc1b.onrender.com/api/withdraw/withdrawals/${id}`,
+        `https://piserver-ljd1.onrender.com/api/withdraw/withdrawals/${id}`,
         { status: "approved", transaction }
       );
       setWithdrawalRequests(
@@ -46,7 +46,7 @@ function  WithdrawalRequests() {
   const handleWithdrawalDelete = async (request) => {
     try {
       await axios.delete(
-        `https://mlm-gc1b.onrender.com/api/withdraw/withdrawalWallet/${request._id}`
+        `https://piserver-ljd1.onrender.com/api/withdraw/withdrawalWallet/${request._id}`
       );
       alert("Deleted successfully!");
     } catch (error) {
@@ -58,7 +58,7 @@ function  WithdrawalRequests() {
     try {
       const response = await axios.put(
         // `http://localhost:5000/api/withdraw/withdrawals/reject/${id}`
-        `https://mlm-gc1b.onrender.com/api/withdraw/withdrawals/reject/${id}`
+        `https://piserver-ljd1.onrender.com/api/withdraw/withdrawals/reject/${id}`
       );
       setWithdrawalRequests((prevRequests) =>
         prevRequests.map((request) =>

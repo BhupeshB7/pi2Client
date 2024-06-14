@@ -37,7 +37,7 @@ const UserWallet = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://mlm-gc1b.onrender.com/api/users/userWalletUpdating/",
+        "https://piserver-ljd1.onrender.com/api/users/userWalletUpdating/",
         {
           userId,
           balance,
@@ -57,7 +57,7 @@ const UserWallet = () => {
   const fetchUserAccountDetails = async () => {
     try {
       const response = await axios.get(
-        "https://mlm-gc1b.onrender.com/api/users/sponsors",
+        "https://piserver-ljd1.onrender.com/api/users/sponsors",
         {
           params: {
             userId: userId,

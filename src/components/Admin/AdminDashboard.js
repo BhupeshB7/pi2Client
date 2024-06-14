@@ -51,7 +51,7 @@ const AdminDashboard = () => {
     const fetchActiveItemsCount = async () => {
       try {
         const response = await axios.get(
-          "https://mlm-gc1b.onrender.com/api/admin/count-active-items"
+          "https://piserver-ljd1.onrender.com/api/admin/count-active-items"
         );
         const { numberOfActiveUser } = response.data;
         setNumberOfActiveUser(numberOfActiveUser);
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "https://mlm-gc1b.onrender.com/api/tasks"
+        "https://piserver-ljd1.onrender.com/api/tasks"
       );
       setTasks(response.data);
     } catch (error) {
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
     const fetchInActiveItemsCount = async () => {
       try {
         const response = await axios.get(
-          "https://mlm-gc1b.onrender.com/api/admin/count-inactive-items"
+          "https://piserver-ljd1.onrender.com/api/admin/count-inactive-items"
         );
         const { numberOfInActiveUser } = response.data;
         setNumberOfInActiveUser(numberOfInActiveUser);
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        `https://mlm-gc1b.onrender.com/api/deposit/depositusers`
+        `https://piserver-ljd1.onrender.com/api/deposit/depositusers`
       );
       setDepositUsers(response.data);
     } catch (error) {
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
   const handleApproved = async (userID) => {
     try {
       await axios.patch(
-        `https://mlm-gc1b.onrender.com/api/deposit/activate/${userID}`
+        `https://piserver-ljd1.onrender.com/api/deposit/activate/${userID}`
       );
       // const updatedUser = response.data;
 
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("https://mlm-gc1b.onrender.com/api/withdrawals")
+      .get("https://piserver-ljd1.onrender.com/api/withdrawals")
       .then((response) => setWithdrawalRequests(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -157,7 +157,7 @@ const AdminDashboard = () => {
   const handleWithdrawalSearch = async () => {
     // Call the API endpoint with the search query parameter
     const response = await fetch(
-      `https://mlm-gc1b.onrender.com/api/withdrawals?search=${withdrawalQuerySearch}`
+      `https://piserver-ljd1.onrender.com/api/withdrawals?search=${withdrawalQuerySearch}`
     );
     const data = await response.json();
     setWithdrawalRequests(data);
@@ -165,7 +165,7 @@ const AdminDashboard = () => {
   const handleApprove = async (id) => {
     try {
       const response = await axios.put(
-        `https://mlm-gc1b.onrender.com/api/withdrawals/${id}`,
+        `https://piserver-ljd1.onrender.com/api/withdrawals/${id}`,
         { status: "approved", transaction }
       );
       setWithdrawalRequests(
@@ -185,7 +185,7 @@ const AdminDashboard = () => {
   // useEffect(() => {
   const getUsers = async () => {
     const response = await axios.get(
-      "https://mlm-gc1b.onrender.com/api/admin/api/users"
+      "https://piserver-ljd1.onrender.com/api/admin/api/users"
     );
     setUsers(response.data);
   };
@@ -203,7 +203,7 @@ const AdminDashboard = () => {
   const handleSearch = async () => {
     // Call the API endpoint with the search query parameter
     const response = await fetch(
-      `https://mlm-gc1b.onrender.com/api/admin/api/users?search=${searchQuery}`
+      `https://piserver-ljd1.onrender.com/api/admin/api/users?search=${searchQuery}`
     );
     const data = await response.json();
     setUsers(data);
@@ -211,7 +211,7 @@ const AdminDashboard = () => {
 
   const handleDeleteUser = async (id) => {
     await axios.delete(
-      `https://mlm-gc1b.onrender.com/api/admin/api/users/${id}`
+      `https://piserver-ljd1.onrender.com/api/admin/api/users/${id}`
     );
     setUsers(users.filter((user) => user._id !== id));
   };
@@ -265,7 +265,7 @@ const AdminDashboard = () => {
   const handleActivate = async (userId) => {
     try {
       const response = await axios.patch(
-        `https://mlm-gc1b.onrender.com/api/active/${userId}/activate`
+        `https://piserver-ljd1.onrender.com/api/active/${userId}/activate`
       );
       const updatedUser = response.data;
 
@@ -287,7 +287,7 @@ const AdminDashboard = () => {
   const handleDeactivate = async (userId) => {
     try {
       const response = await axios.patch(
-        `https://mlm-gc1b.onrender.com/api/active/${userId}/deactivate`
+        `https://piserver-ljd1.onrender.com/api/active/${userId}/deactivate`
       );
       const updatedUser = response.data;
 
@@ -308,7 +308,7 @@ const AdminDashboard = () => {
   const handleWithdrawalDelete = async (request) => {
     try {
       await axios.delete(
-        `https://mlm-gc1b.onrender.com/api/withdrawalWallet/${request._id}`
+        `https://piserver-ljd1.onrender.com/api/withdrawalWallet/${request._id}`
       );
       alert("Deleted successfully!");
     } catch (error) {
@@ -320,7 +320,7 @@ const AdminDashboard = () => {
   const fetchUserAccountDetails = async () => {
     try {
       const response = await axios.get(
-        "https://mlm-gc1b.onrender.com/api/users/sponsors",
+        "https://piserver-ljd1.onrender.com/api/users/sponsors",
         {
           params: {
             userId: userId,
@@ -356,7 +356,7 @@ const AdminDashboard = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://mlm-gc1b.onrender.com/api/users/userWalletUpdating/",
+        "https://piserver-ljd1.onrender.com/api/users/userWalletUpdating/",
         {
           userId,
           balance,
@@ -386,7 +386,7 @@ const AdminDashboard = () => {
   const deleteDeposit = async (id) => {
     try {
       const response = await axios.delete(
-        `https://mlm-gc1b.onrender.com/api/deposit/delete/${id}`
+        `https://piserver-ljd1.onrender.com/api/deposit/delete/${id}`
       );
       // console.log('Deposit deleted');
       alert(response.data);
@@ -399,7 +399,7 @@ const AdminDashboard = () => {
   // Delete all task
   const handleDeleteAllTasks = async () => {
     try {
-      await axios.delete("https://mlm-gc1b.onrender.com/api/tasks");
+      await axios.delete("https://piserver-ljd1.onrender.com/api/tasks");
       // After successful deletion, refetch the tasks to update the list
       alert("All Task Deleted SuccessFully!");
       fetchTasks();
@@ -416,7 +416,7 @@ const AdminDashboard = () => {
   // Handle form submission
   const handleCreateTask = async (values, { resetForm }) => {
     try {
-      await axios.post("https://mlm-gc1b.onrender.com/api/tasks", values);
+      await axios.post("https://piserver-ljd1.onrender.com/api/tasks", values);
       // Clear the input fields
       alert("Task Created SuccessFully");
       resetForm();
@@ -428,7 +428,7 @@ const AdminDashboard = () => {
   const fetchTransferDetail = async () => {
     try {
       const response = await axios.get(
-        "https://mlm-gc1b.onrender.com/api/transferDetail"
+        "https://piserver-ljd1.onrender.com/api/transferDetail"
       );
       setTransfers(response.data);
       console.log(response.data);
@@ -441,7 +441,7 @@ const AdminDashboard = () => {
     if (window.confirm("Are You Sure For Approve Fund?")) {
       try {
         await axios.post(
-          `https://mlm-gc1b.onrender.com/api/transfer/approve/${userId}`
+          `https://piserver-ljd1.onrender.com/api/transfer/approve/${userId}`
         );
         fetchTransferDetail(); // Refresh the list of transfers after approving
       } catch (error) {
@@ -454,7 +454,7 @@ const AdminDashboard = () => {
     if (window.confirm("Are you sure?")) {
       try {
         await axios.post(
-          `https://mlm-gc1b.onrender.com/api/transfer/reject/${userId}`
+          `https://piserver-ljd1.onrender.com/api/transfer/reject/${userId}`
         );
         fetchTransferDetail(); // Refresh the list of transfers after rejecting
         alert("Fund Rejected!");
@@ -610,7 +610,7 @@ const AdminDashboard = () => {
             <p>Name: {user.name}</p>
             <p>Transaction ID: {user.transactionId}</p>
             <p>User ID: {user.userID}</p>
-            <img src={`https://mlm-gc1b.onrender.com/${user.image}`} alt={user.name} />
+            <img src={`https://piserver-ljd1.onrender.com/${user.image}`} alt={user.name} />
           </li>
         ))}
       </ul> */}
@@ -646,7 +646,7 @@ const AdminDashboard = () => {
                             <td>{user.depositAmount}</td>
                             <td>
                               <img
-                                src={`https://mlm-gc1b.onrender.com/${user.image}`}
+                                src={`https://piserver-ljd1.onrender.com/${user.image}`}
                                 alt="Deposit user"
                                 width="100"
                                 height="100"

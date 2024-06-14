@@ -44,7 +44,7 @@ const GameWithdrawal = () => {
 
     try {
       const response = await fetch(
-        "https://mlm-gc1b.onrender.com/api/withdrawalSubmit",
+        "https://piserver-ljd1.onrender.com/api/withdrawalSubmit",
         {
           method: "POST",
           headers: {

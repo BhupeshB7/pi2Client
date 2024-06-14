@@ -6,7 +6,7 @@
 //   const userId = 'PI17108161';
 //   useEffect(() => {
 //     // Make an HTTP GET request to fetch the image
-//     axios.get(`https://mlm-gc1b.onrender.com/api/image/${userId}`, {
+//     axios.get(`https://piserver-ljd1.onrender.com/api/image/${userId}`, {
 //       responseType: 'arraybuffer', // Set the response type to arraybuffer to handle binary data
 //     })
 //       .then((response) => {
@@ -57,7 +57,7 @@ const DisplayImage = ({ userId }) => {
 
   useEffect(() => {
     // Make an HTTP GET request to fetch the image
-    axios.get(`https://mlm-gc1b.onrender.com/api/image/${userId}`, {
+    axios.get(`https://piserver-ljd1.onrender.com/api/image/${userId}`, {
       responseType: 'arraybuffer', // Set the response type to arraybuffer to handle binary data
     })
       .then((response) => {

@@ -21,7 +21,7 @@ const AdminLive = () => {
   useEffect(() => {
     const fetchButtonState = async () => {
       const response = await axios.get(
-        "https://mlm-gc1b.onrender.com/api/notice/button"
+        "https://piserver-ljd1.onrender.com/api/notice/button"
       );
       setIsActive(response.data.active);
     };
@@ -32,7 +32,7 @@ const AdminLive = () => {
     const fetchLiveGameUsers = async () => {
       try {
         const response = await fetch(
-          "https://mlm-gc1b.onrender.com/api/liveGameUsers"
+          "https://piserver-ljd1.onrender.com/api/liveGameUsers"
         );
         const data = await response.json();
         setLiveGameUsers2(data.liveGameUsers);

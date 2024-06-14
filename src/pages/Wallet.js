@@ -14,7 +14,7 @@ function Setting() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://mlm-gc1b.onrender.com/api/users/profile",
+        "https://piserver-ljd1.onrender.com/api/users/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,

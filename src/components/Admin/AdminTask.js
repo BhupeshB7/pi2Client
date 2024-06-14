@@ -32,7 +32,7 @@ const AdminTask = () => {
   // Delete all task
     const handleDeleteAllTasks = async () => {
       try {
-        await axios.delete("https://mlm-gc1b.onrender.com/api/tasks");
+        await axios.delete("https://piserver-ljd1.onrender.com/api/tasks");
         // After successful deletion, refetch the tasks to update the list
         alert("All Task Deleted SuccessFully!");
         fetchTasks();
@@ -49,7 +49,7 @@ const AdminTask = () => {
   // Handle form submission
   const handleCreateTask = async (values, { resetForm }) => {
     try {
-      await axios.post("https://mlm-gc1b.onrender.com/api/tasks", values);
+      await axios.post("https://piserver-ljd1.onrender.com/api/tasks", values);
       // Clear the input fields
       alert("Task Created SuccessFully");
       resetForm();
@@ -61,7 +61,7 @@ const AdminTask = () => {
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "https://mlm-gc1b.onrender.com/api/tasks"
+        "https://piserver-ljd1.onrender.com/api/tasks"
       );
       setTasks(response.data);
     } catch (error) {
@@ -81,7 +81,7 @@ const AdminTask = () => {
   const deleteDeposit = async (id) => {
     try {
       const response = await axios.delete(
-        `https://mlm-gc1b.onrender.com/api/deposit/delete/${id}`
+        `https://piserver-ljd1.onrender.com/api/deposit/delete/${id}`
       );
       // console.log('Deposit deleted');
       alert(response.data);

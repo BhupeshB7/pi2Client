@@ -14,7 +14,7 @@ function Captcha({onVerification}) {
 
   const refreshCaptcha = () => {
     axios
-      .post("https://mlm-gc1b.onrender.com/captcha/refresh")
+      .post("https://piserver-ljd1.onrender.com/captcha/refresh")
       .then((response) => {
         setCaptcha(response.data.captcha);
         setMatchSuccess(false); // Reset match success status
@@ -34,7 +34,7 @@ function Captcha({onVerification}) {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "https://mlm-gc1b.onrender.com/captcha/verify",
+        "https://piserver-ljd1.onrender.com/captcha/verify",
         { userInput: inputCaptcha }
       );
 

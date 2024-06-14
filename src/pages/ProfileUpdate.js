@@ -42,7 +42,7 @@ const ProfileUpdate = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://mlm-gc1b.onrender.com/api/users/profile",
+          "https://piserver-ljd1.onrender.com/api/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ const ProfileUpdate = () => {
     try {
       // Make API call to update profile using profileData state
       const response = await axios.post(
-        "https://mlm-gc1b.onrender.com/api/users/profileUpdate",
+        "https://piserver-ljd1.onrender.com/api/users/profileUpdate",
         profileData,
         {
           headers: {
