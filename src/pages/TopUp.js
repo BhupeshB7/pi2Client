@@ -16,7 +16,7 @@ const apiUrl = process.env.REACT_API_API_URL
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `${apiURL}/api/users/profile`,
+        `${apiUrl}/api/users/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
