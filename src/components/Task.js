@@ -17,10 +17,11 @@ const [remainingTime, setRemainingTime] = useState(60);
 const [isTaskComplete, setIsTaskComplete] = useState(false);
   const token = localStorage.getItem('token');
 //for navigate user
+const apiUrl = process.env.REACT_APP_API_URL;
 useEffect(() => {
   const fetchUserId = async () => {
     try {
-      const response = await fetch('https://piserver-ljd1.onrender.com/api/users/profile', {
+      const response = await fetch(`${apiUrl}/api/users/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +51,7 @@ useEffect(() => {
 // Fetch the videos from the server when the component mounts
 useEffect(() => {
   async function fetchVideos() {
-    const response = await fetch('https://piserver-ljd1.onrender.com/api/task/tasks');
+    const response = await fetch(`${apiUrl}/api/task/tasks`);
     const videos = await response.json();
     // Get watched videos from local storage or set them to an empty array
     const watchedVideos = JSON.parse(localStorage.getItem('watchedVideos')) || [];
@@ -111,7 +112,7 @@ async function updateWallet(userId) {
   // Disable the button
   setIsButtonDisabled(true);
     try {
-      const response = await axios.post(`https://piserver-ljd1.onrender.com/api/updateWallet/${userId}`);
+      const response = await axios.post(`${apiUrl}/api/updateWallet/${userId}`);
       setWalletUpdated(true);
       console.log(response.data);
       alert("Wallet updated successfully!");

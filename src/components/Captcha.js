@@ -7,14 +7,14 @@ function Captcha({onVerification}) {
   const [inputCaptcha, setInputCaptcha] = useState("");
   const [matchSuccess, setMatchSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     refreshCaptcha();
   }, []);
 
   const refreshCaptcha = () => {
     axios
-      .post("https://piserver-ljd1.onrender.com/captcha/refresh")
+      .post(`${apiUrl}/captcha/refresh`)
       .then((response) => {
         setCaptcha(response.data.captcha);
         setMatchSuccess(false); // Reset match success status
@@ -34,7 +34,7 @@ function Captcha({onVerification}) {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "https://piserver-ljd1.onrender.com/captcha/verify",
+        `${apiUrl}/captcha/verify`,
         { userInput: inputCaptcha }
       );
 

@@ -4,11 +4,11 @@ import axios from 'axios';
 const TeamTable = ({ userId }) => {
   const [teamStructure, setTeamStructure] = useState(null);
   const [currentMember, setCurrentMember] = useState(null);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/teamTaskMember/${userId}`);
+        const response = await axios.get(`${apiUrl}/api/teamTaskMember/${userId}`);
         setTeamStructure(response.data);
         setCurrentMember(response.data);
       } catch (error) {

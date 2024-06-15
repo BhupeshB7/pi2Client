@@ -9,11 +9,12 @@ const FundHistory = ({ userId }) => {
     const token = localStorage.getItem('token');
     const [allTransfers, setAllTransfers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const apiUrl = process.env.REACT_APP_API_URL;
 //for navigate user
 const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://piserver-ljd1.onrender.com/api/users/profile', {
+      const response = await fetch(`${apiUrl}/api/users/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -32,7 +33,7 @@ const navigate = useNavigate();
   useEffect(() => {
     const fetchPendingTransfers = async () => {
       try {
-        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/pendingTransfers/${data._id}`);
+        const response = await axios.get(`${apiUrl}/api/pendingTransfers/${data._id}`);
         setAllTransfers(response.data.allTransfers);
       } catch (error) {
         console.error("Error fetching transfers:", error);

@@ -7,11 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://gspserver-0xs1.onrender.com/api/admin/login', {
+      const response = await fetch(`${apiUrl}/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

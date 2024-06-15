@@ -14,12 +14,13 @@ function ReTopup({ topupWallet }) {
   const usersID = localStorage.getItem("GamerUserId");
   const [selectedAmount, setSelectedAmount] = useState(500);
   const [isValid, setIsValid] = useState(true);
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchActivationStatus = async () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://piserver-ljd1.onrender.com/api/auth/checkActivation/${usersID}`
+          `${apiUrl}/api/auth/checkActivation/${usersID}`
         );
         setMessage(response.data.message);
         setReTopUpRequired(response.data.reTopUpRequired);
@@ -63,7 +64,7 @@ function ReTopup({ topupWallet }) {
     }
     try {
       const response = await fetch(
-        `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${userId}`,
+        `${apiUrl}/api/deposit/topUpUserID/${userId}`,
         // `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${data.userId}`,
         {
           method: "POST",

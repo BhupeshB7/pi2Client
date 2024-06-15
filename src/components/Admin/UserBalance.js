@@ -71,7 +71,7 @@ function UserBalance() {
   const [alertMessage, setAlertMessage] = useState(null);
   const [alertVariant, setAlertVariant] = useState('success');
   const [showModal, setShowModal] = useState(false);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
@@ -87,7 +87,7 @@ function UserBalance() {
     setAbortController(newController);
 
     try {
-      await axios.post('https://piserver-ljd1.onrender.com/api/auth/resetBalances', null, { signal: newController.signal });
+      await axios.post(`${apiUrl}/api/auth/resetBalances`, null, { signal: newController.signal });
       setAlertVariant('success');
       setAlertMessage('Balances reset successfully.');
     } catch (error) {

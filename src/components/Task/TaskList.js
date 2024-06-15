@@ -268,11 +268,12 @@ const TaskList = () => {
   );
   const [authorizationChecked, setAuthorizationChecked] = useState(false);
 
+   const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchUserAndCheckAuthorization = async () => {
       try {
         const response = await fetch(
-          "https://piserver-ljd1.onrender.com/api/users/profile",
+          `${apiUrl}/api/users/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -326,7 +327,7 @@ const TaskList = () => {
         for (const task of tasks) {
           const taskId = task._id;
           const response = await axios.get(
-            `https://piserver-ljd1.onrender.com/userTasks/${taskId}/${id}`
+            `${apiUrl}/userTasks/${taskId}/${id}`
           );
           taskStatusData[taskId] = response.data.completed;
         }

@@ -10,7 +10,7 @@ const TransferForm = ({ sourceUserId }) => {
   const [userName, setUserName] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+const apiUrl = process.env.REACT_API_API_URL
   const handleSearch = () => {
     if (!targetUserId) {
       setErrorMessage("Please enter a User ID.");
@@ -21,7 +21,7 @@ const TransferForm = ({ sourceUserId }) => {
 
     axios
       .get(
-        `https://mlm-gc1b.onrender.com/api/targetTransfer/name/${targetUserId}`
+        `${apiUrl}/api/targetTransfer/name/${targetUserId}`
       )
       .then((response) => {
         if (response.data.name) {
@@ -48,7 +48,7 @@ const TransferForm = ({ sourceUserId }) => {
     try {
       // Send a request to the backend API
       const response = await axios.post(
-        "https://mlm-gc1b.onrender.com/api/transferTopupWallet",
+        `${apiUrl}/api/transferTopupWallet`,
         {
           sourceUserId,
           targetUserId,

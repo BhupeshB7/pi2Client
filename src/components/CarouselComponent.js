@@ -49,11 +49,11 @@ function ControlledCarousel() {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('https://piserver-ljd1.onrender.com/images');
+        const response = await axios.get(`${apiUrl}/images`);
         setImages(response.data);
       } catch (error) {
         console.error(error);

@@ -6,12 +6,13 @@ function Profile() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("token");
+  const apiUrl = process.env.REACT_APP_API_URL;
   //for navigate user
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://piserver-ljd1.onrender.com/api/users/profile",
+        `${apiUrl}/api/users/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

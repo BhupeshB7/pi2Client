@@ -11,7 +11,7 @@ const App = () => {
   const controller = new AbortController();
   const signal = controller.signal;
 
-  
+  const apiUrl = process.env.REACT_APP_API_URL;
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
 
@@ -32,14 +32,14 @@ const App = () => {
       const formData = new FormData();
       formData.append('image', image);
 
-      await axios.post('https://piserver-ljd1.onrender.com/upload', formData, {
+      await axios.post(`${apiUrl}/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
       // Fetch the updated images after upload
-      const response = await axios.get('https://piserver-ljd1.onrender.com/images', { signal });
+      const response = await axios.get(`${apiUrl}/images`, { signal });
       setImages(response.data);
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -52,10 +52,10 @@ const App = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://piserver-ljd1.onrender.com/delete/${id}`, { signal });
+      await axios.delete(`${apiUrl}/delete/${id}`, { signal });
 
       // Fetch the updated images after deletion
-      const response = await axios.get('https://piserver-ljd1.onrender.com/images', { signal });
+      const response = await axios.get(`${apiUrl}/images`, { signal });
       setImages(response.data);
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -69,7 +69,7 @@ const App = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('https://piserver-ljd1.onrender.com/images', { signal });
+        const response = await axios.get(`${apiUrl}/images`, { signal });
 console.log('Server Response:', response);
 setImages(response.data);
 

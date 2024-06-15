@@ -37,12 +37,12 @@ const ProfileUpdate = () => {
       setIsAuthenticated(true);
     }
   }, []);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://piserver-ljd1.onrender.com/api/users/profile",
+          `${apiUrl}/api/users/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ const ProfileUpdate = () => {
     try {
       // Make API call to update profile using profileData state
       const response = await axios.post(
-        "https://piserver-ljd1.onrender.com/api/users/profileUpdate",
+        `${apiUrl}/api/users/profileUpdate`,
         profileData,
         {
           headers: {

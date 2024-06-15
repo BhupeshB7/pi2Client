@@ -16,9 +16,9 @@ const ForgotPassword = () => {
     const [password, setPassword] = useState("");
 
     const [message, setMessage] = useState("");
-
+const apiUrl = process.env.REACT_APP_API_URL;
     const userValid = async () => {
-        const res = await fetch(`https://piserver-ljd1.onrender.com/api/forgotpassword/${id}/${token}`, {
+        const res = await fetch(`${apiUrl}/api/forgotpassword/${id}/${token}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -51,7 +51,7 @@ const ForgotPassword = () => {
                 position: "top-center"
             });
         } else {
-            const res = await fetch(`https://piserver-ljd1.onrender.com/api/auth/${id}/${token}`, {
+            const res = await fetch(`${apiUrl}/api/auth/${id}/${token}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -15,11 +15,12 @@ function Setting() {
     localStorage.getItem("token") ? true : false
   );
   const [copied, setCopied] = useState(false);
+  const apiUrl = process.env.REACT_API_API_URL 
   //for navigate user
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://piserver-ljd1.onrender.com/api/users/profile",
+        `${apiUrl}/api/users/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

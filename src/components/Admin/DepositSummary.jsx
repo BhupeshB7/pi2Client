@@ -9,11 +9,11 @@ function DepositSummary() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://piserver-ljd1.onrender.com/api/deposit/allAmounts/summary');
+        const response = await axios.get(`${apiUrl}/api/deposit/allAmounts/summary`);
         setWithdrawalData(response.data);
       } catch (error) {
         handleError(error);

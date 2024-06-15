@@ -14,10 +14,11 @@ function ChangePassword() {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://piserver-ljd1.onrender.com/api/users/profile",
+        `${apiUrl}/api/users/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +73,7 @@ function ChangePassword() {
     if (!hasError) {
       try {
         const response = await fetch(
-          "https://piserver-ljd1.onrender.com/api/change-password",
+          `${apiUrl}/api/change-password`,
           {
             method: "POST",
             headers: {

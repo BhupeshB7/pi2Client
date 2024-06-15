@@ -7,11 +7,11 @@ function  WithdrawalRequests() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [transaction, setTransaction] = useState("");
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     // Fetch data from your backend API with pagination and search
     fetch(
-      `https://piserver-ljd1.onrender.com/api/withdraw/withdrawals?search=${withdrawalQuerySearch}&page=${currentPage}`
+      `${apiUrl}/api/withdraw/withdrawals?search=${withdrawalQuerySearch}&page=${currentPage}`
       // http://localhost:5000/api/withdraw/withdrawals
     )
       .then((response) => response.json())
@@ -30,7 +30,7 @@ function  WithdrawalRequests() {
   const handleApprove = async (id) => {
     try {
       const response = await axios.put(
-        `https://piserver-ljd1.onrender.com/api/withdraw/withdrawals/${id}`,
+        `${apiUrl}/api/withdraw/withdrawals/${id}`,
         { status: "approved", transaction }
       );
       setWithdrawalRequests(
@@ -46,7 +46,7 @@ function  WithdrawalRequests() {
   const handleWithdrawalDelete = async (request) => {
     try {
       await axios.delete(
-        `https://piserver-ljd1.onrender.com/api/withdraw/withdrawalWallet/${request._id}`
+        `${apiUrl}/api/withdraw/withdrawalWallet/${request._id}`
       );
       alert("Deleted successfully!");
     } catch (error) {
@@ -58,7 +58,7 @@ function  WithdrawalRequests() {
     try {
       const response = await axios.put(
         // `http://localhost:5000/api/withdraw/withdrawals/reject/${id}`
-        `https://piserver-ljd1.onrender.com/api/withdraw/withdrawals/reject/${id}`
+        `${apiUrl}/api/withdraw/withdrawals/reject/${id}`
       );
       setWithdrawalRequests((prevRequests) =>
         prevRequests.map((request) =>

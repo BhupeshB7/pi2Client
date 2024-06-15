@@ -13,11 +13,11 @@ const AdminTask = () => {
     const tokenExpire = localStorage.getItem("tokenExpire");
     return tokenExpire ? parseInt(tokenExpire) : null;
   };
-  
   const isTokenExpired = () => {
     const expireTime = getTokenExpireTime();
     return expireTime ? expireTime < Date.now() : true;
   };
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     if (isTokenExpired()) {
       setIsTokenValid(false);
@@ -32,7 +32,7 @@ const AdminTask = () => {
   // Delete all task
     const handleDeleteAllTasks = async () => {
       try {
-        await axios.delete("https://piserver-ljd1.onrender.com/api/tasks");
+        await axios.delete(`${apiUrl}/api/tasks`);
         // After successful deletion, refetch the tasks to update the list
         alert("All Task Deleted SuccessFully!");
         fetchTasks();
@@ -49,7 +49,7 @@ const AdminTask = () => {
   // Handle form submission
   const handleCreateTask = async (values, { resetForm }) => {
     try {
-      await axios.post("https://piserver-ljd1.onrender.com/api/tasks", values);
+      await axios.post(`${apiUrl}/api/tasks`, values);
       // Clear the input fields
       alert("Task Created SuccessFully");
       resetForm();
@@ -61,7 +61,7 @@ const AdminTask = () => {
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "https://piserver-ljd1.onrender.com/api/tasks"
+        `${apiUrl}/api/tasks`
       );
       setTasks(response.data);
     } catch (error) {
@@ -81,7 +81,7 @@ const AdminTask = () => {
   const deleteDeposit = async (id) => {
     try {
       const response = await axios.delete(
-        `https://piserver-ljd1.onrender.com/api/deposit/delete/${id}`
+        `${apiUrl}/api/deposit/delete/${id}`
       );
       // console.log('Deposit deleted');
       alert(response.data);

@@ -13,10 +13,10 @@ const ContactInfo = () => {
     whatsAppNumber: '',
   });
   const [isEditMode, setIsEditMode] = useState(false);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     // Fetch user details on component mount
-    axios.get('https://piserver-ljd1.onrender.com/api/contactInfo').then((response) => setUserDetails(response.data));
+    axios.get(`${apiUrl}/api/contactInfo`).then((response) => setUserDetails(response.data));
   }, []);
 
   const handleInputChange = (e) => {
@@ -28,7 +28,7 @@ const ContactInfo = () => {
     const requestMethod = 'post';
 
     // Send request to save/update user details
-    axios[requestMethod]('https://piserver-ljd1.onrender.com/api/contactInfo', userDetails).then(() => {
+    axios[requestMethod](`${apiUrl}/api/contactInfo`, userDetails).then(() => {
       setIsEditMode(false);
     });
   };

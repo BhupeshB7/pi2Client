@@ -11,11 +11,11 @@ const FormComponent = () => {
     reservedWallet: '',
   };
   const [users, setUsers] = useState([]);
-
+const apiUrl= process.env.REACT_APP_API_URL;
   // Fetch data from the backend
   const fetchUsers = async () => {
     try {
-      const response = await fetch('https://gspwebserver.onrender.com/api/users/reTopup');
+      const response = await fetch(`${apiUrl}/api/users/reTopup`);
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -36,7 +36,7 @@ const FormComponent = () => {
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await fetch('https://gspwebserver.onrender.com/api/users/reTopup', {
+      const response = await fetch(`${apiUrl}/api/users/reTopup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

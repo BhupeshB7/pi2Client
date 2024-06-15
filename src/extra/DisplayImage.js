@@ -54,10 +54,10 @@ import axios from 'axios';
 const DisplayImage = ({ userId }) => {
   const [imageData, setImageData] = useState(null);
   const [imageFound, setImageFound] = useState(true); // Track if the image is found or not
-
+const apiUrl = process.env.REACT_APP_API_URL
   useEffect(() => {
     // Make an HTTP GET request to fetch the image
-    axios.get(`https://piserver-ljd1.onrender.com/api/image/${userId}`, {
+    axios.get(`${apiUrl}/api/image/${userId}`, {
       responseType: 'arraybuffer', // Set the response type to arraybuffer to handle binary data
     })
       .then((response) => {

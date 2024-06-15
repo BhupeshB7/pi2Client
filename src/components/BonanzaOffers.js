@@ -20,10 +20,10 @@ const BonanzaOffers = () => {
   const [downlineCount, setDownlineCount] = useState(0);
   const [downlineUsers, setDownlineUsers] = useState([]);
   const [error, setError] = useState(null);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://piserver-ljd1.onrender.com/api/auth/bonanzaOffers/${userId}`);
+      const response = await axios.get(`${apiUrl}/api/auth/bonanzaOffers/${userId}`);
       const { count, details } = response.data;
       setDownlineCount(count);
       setDownlineUsers(details);

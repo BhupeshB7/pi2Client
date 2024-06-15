@@ -169,12 +169,13 @@ const Dashboard1 = ({ contactInfoList }) => {
   const handleImageUploadSuccess = () => {
     setImagePresent(true);
   };
+  const apiUrl = process.env.REACT_APP_API_URL;
   // useEffect hooks
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://piserver-ljd1.onrender.com/api/users/profile",
+          `${apiUrl}/api/users/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -226,7 +227,7 @@ const Dashboard1 = ({ contactInfoList }) => {
       try {
         // const response = await fetch(`https://piserver-ljd1.onrender.com/api/daily-level-income/users/${data.userId}`);
         const response = await fetch(
-          `https://piserver-ljd1.onrender.com/api/daily-level-income/users/${data.userId}`,
+          `${apiUrl}/api/daily-level-income/users/${data.userId}`,
           {
             headers: {
               "Cache-Control": "no-cache",
@@ -267,7 +268,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   useEffect(() => {
     axios
       .get(
-        `https://piserver-ljd1.onrender.com/api/users/teamStructureRank/${data.userId}`
+        `${apiUrl}/api/users/teamStructureRank/${data.userId}`
       )
       .then((response) => {
         const responseData = response.data;
@@ -287,7 +288,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     setIsTeamLoading(true);
     axios
       .get(
-        `https://piserver-ljd1.onrender.com/api/users/teamStructure/${data.userId}`
+        `${apiUrl}/api/users/teamStructure/${data.userId}`
       )
       .then((response) => {
         setActiveUsersByLevel(response.data);
@@ -306,7 +307,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     const fetchTeamStructure = async (userId) => {
       try {
         const response = await axios.get(
-          `https://piserver-ljd1.onrender.com/api/users/team/${userId}`
+          `${apiUrl}/api/users/team/${userId}`
         );
         setTeamStructure(response.data);
         setCurrentDownline(response?.data?.downline);
@@ -321,7 +322,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     const fetchTopupAmount = async () => {
       try {
         const response = await axios.get(
-          `https://piserver-ljd1.onrender.com/api/deposit/topUpuserAmount/${data.userId}`
+          `${apiUrl}/api/deposit/topUpuserAmount/${data.userId}`
         );
         console.log("API Response:", response.data);
         console.log(data.userId);
@@ -360,7 +361,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     setIsProcessing(true);
     const amount = Number(withdrawalAmount); // convert string to number
     fetch(
-      `https://piserver-ljd1.onrender.com/api/withdraw/user/${data.userId}`,
+      `${apiUrl}/api/withdraw/user/${data.userId}`,
       // `http://localhost:5500/api/withdraw/user/${data.userId}`,
       {
         // fetch(`http://localhost:5000/api/withdraw/user/${data.userId}`, {
@@ -420,7 +421,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `https://piserver-ljd1.onrender.com/api/transfer/${data._id}`,
+        `${apiUrl}/api/transfer/${data._id}`,
         { amount: parseFloat(amount) }
       );
 
@@ -444,7 +445,7 @@ const Dashboard1 = ({ contactInfoList }) => {
   const handleClick = async () => {
     try {
       const response = await fetch(
-        "https://piserver-ljd1.onrender.com/api/deposit/topUpActivate/",
+        `${apiUrl}/api/deposit/topUpActivate/`,
         {
           method: "POST",
           headers: {
@@ -526,7 +527,7 @@ const Dashboard1 = ({ contactInfoList }) => {
     }
     try {
       const response = await fetch(
-        `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${data.userId}`,
+        `${apiUrl}/api/deposit/topUpUserID/${data.userId}`,
         // `https://piserver-ljd1.onrender.com/api/deposit/topUpUserID/${data.userId}`,
         {
           method: "POST",

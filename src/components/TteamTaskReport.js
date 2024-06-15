@@ -12,10 +12,11 @@ const TeamTaskReport = ({ userId }) => {
   const closeModal=()=>{
     setShowModal(false);
   }
+  const apiUrl= process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
-        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/teamTaskReport/${userId}`);
+        const response = await axios.get(`${apiUrl}/api/teamTaskReport/${userId}`);
         setTeamData(response.data);
       } catch (error) {
         console.error('Error fetching team data:', error);

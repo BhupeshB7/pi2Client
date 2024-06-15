@@ -162,11 +162,11 @@ function DepositHistory() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("token");
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://piserver-ljd1.onrender.com/api/users/profile", {
+        const response = await axios.get(`${apiUrl}/api/users/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -187,7 +187,7 @@ function DepositHistory() {
       const fetchDepositData = async () => {
         try {
           const response = await axios.get(
-            `https://piserver-ljd1.onrender.com/api/deposit/depositHistory/${data.userId}`
+            `${apiUrl}/api/deposit/depositHistory/${data.userId}`
           );
           const { depositHistory, currentPage, totalPages } = response.data;
           if (Array.isArray(depositHistory)) {

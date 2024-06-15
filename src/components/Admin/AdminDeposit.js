@@ -10,7 +10,7 @@ function AdminDeposit() {
   const [isTokenValid, setIsTokenValid] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showImage, setShowImage] = useState(null);
-
+const apiUrl= process.env.REACT_API_URL;
   // Open the modal to display the selected image
   const openImage = (image) => {
     setShowImage(image);
@@ -45,7 +45,7 @@ function AdminDeposit() {
   const fetchUsers = async (page) => {
     try {
       const response = await axios.get(
-        `https://piserver-ljd1.onrender.com/api/deposit/depositusers?page=${page}&search=${searchQuery}`
+        `${apiUrl}/api/deposit/depositusers?page=${page}&search=${searchQuery}`
       );
 
       setDepositUsers(response.data.users);
@@ -61,7 +61,7 @@ function AdminDeposit() {
   const handleApproved = async (userID) => {
     try {
       await axios.patch(
-        `https://piserver-ljd1.onrender.com/api/deposit/activate/${userID}`
+        `${apiUrl}/api/deposit/activate/${userID}`
       );
       // const updatedUser = response.data;
 
@@ -86,7 +86,7 @@ function AdminDeposit() {
   const deleteDeposit = async (id) => {
     try {
       const response = await axios.delete(
-        `https://piserver-ljd1.onrender.com/api/deposit/delete/${id}`
+        `${apiUrl}/api/deposit/delete/${id}`
       );
       // console.log('Deposit deleted');
       alert(response.data);

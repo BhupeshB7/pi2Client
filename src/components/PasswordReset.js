@@ -10,7 +10,6 @@ const PasswordReset = () => {
   const setVal = (e) => {
     setEmail(e.target.value);
   };
-
   const sendLink = async (e) => {
     e.preventDefault();
 

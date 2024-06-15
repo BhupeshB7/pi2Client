@@ -12,10 +12,10 @@ const FileInput = ({userId}) => {
   // const [userId] = useState('PI17108161');
   const [showInputBox, setShowInputBox] = useState(true); // State to control input box visibility
   const [imageFound, setImageFound] = useState(true); // State to track if the image is found or not
-
+const apiUrl = process.env.REACT_APP_API_URL
   useEffect(() => {
     // Check if the image exists by making an API request
-    axios.get(`https://piserver-ljd1.onrender.com/api/image/${userId}`)
+    axios.get(`${apiUrl}/api/image/${userId}`)
       .then(() => {
         // Image found
         setImageFound(true);

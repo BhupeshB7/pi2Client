@@ -171,11 +171,11 @@ function Withdrawal() {
   const [withdrawalsPerPage] = useState(10); // 10 withdrawals per page
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
-
+const apiUrl = process.env.REACT_API_API_URL
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://piserver-ljd1.onrender.com/api/users/profile', {
+        const response = await fetch(`${apiUrl}/api/users/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -193,7 +193,7 @@ function Withdrawal() {
 
   useEffect(() => {
     if (data.userId) {
-      axios.get(`https://piserver-ljd1.onrender.com/api/withdraw/withdrawals/${data.userId}`)
+      axios.get(`${apiUrl}/api/withdraw/withdrawals/${data.userId}`)
         .then(response => setWithdrawalRequest(response.data))
         .catch(error => console.log(error));
     }

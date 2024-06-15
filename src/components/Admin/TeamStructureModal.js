@@ -17,7 +17,7 @@ const TeamStructureModal = () => {
     "Royal Star",
     "Diamond",
   ];
-  
+  const apiUrl = process.env.REACT_APP_API_URL;
   const fetchTeamStructure = () => {
     if (!userId.trim()) {
       setIsValid(false);
@@ -25,7 +25,7 @@ const TeamStructureModal = () => {
     }
     setLoading(true); // Show loading spinner
     axios
-      .get(`https://piserver-ljd1.onrender.com/api/users/teamStructure/${userId}`)
+      .get(`${apiUrl}/api/users/teamStructure/${userId}`)
       .then((response) => {
         setActiveUsersByLevel(response.data);
         setShowModal(true); // Show modal after fetching team structure

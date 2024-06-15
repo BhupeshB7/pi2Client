@@ -11,12 +11,12 @@ function TopUpHistory() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("token");
-
+const apiUrl = process.env.REACT_API_API_URL
   // Fetch user data
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://piserver-ljd1.onrender.com/api/users/profile",
+        `${apiUrl}/api/users/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ function TopUpHistory() {
       try {
         const response = await axios.get(
           // `http://localhost:5000/api/topupHistory/${userId}`
-          `https://piserver-ljd1.onrender.com/api/topupHistory/${data.userId}`
+          `${apiUrl}/api/topupHistory/${data.userId}`
         );
         const { topUpdata, currentPage, totalPages } = response.data;
         // console.log(topUpdata);

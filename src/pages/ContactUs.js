@@ -9,7 +9,7 @@ function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,7 +27,7 @@ function ContactForm() {
     };
 
     try {
-      const response = await axios.post('https://piserver-ljd1.onrender.com/api/send-email', dataToSubmit);
+      const response = await axios.post(`${apiUrl}/api/send-email`, dataToSubmit);
 
       if (response.status === 200) {
         alert('Contact us form submitted!');

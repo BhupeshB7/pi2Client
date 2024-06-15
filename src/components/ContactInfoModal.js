@@ -22,13 +22,13 @@ const ContactInfoModal = ({ showModal, closeModal, userData, setUserData }) => {
   const handleUpdateClick = () => {
     setIsUpdateMode(true);
   };
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const handleSave = async () => {
     try {
       // Validation - Add your validation logic here
 
       // Update user data
-      const updatedUserData = await axios.put('https://piserver-ljd1.onrender.com/api/users/update', formData);
+      const updatedUserData = await axios.put(`${apiUrl}/api/users/update`, formData);
       setUserData([updatedUserData.data.userUpdated]);
       setIsUpdateMode(false);
       closeModal();

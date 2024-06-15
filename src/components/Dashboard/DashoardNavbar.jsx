@@ -144,12 +144,13 @@ const DashboardNavbar = ({ data }) => {
 
   //   fetchsponsors();
   // }, [data.userId]);
+  const apiUrl = process.env.REACT_APP_API_URL;
   //Direct member code with pagination
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
         setLoadingNext(true);
-        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/direct/${data.userId}`);
+        const response = await axios.get(`${apiUrl}/api/direct/${data.userId}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,
@@ -170,7 +171,7 @@ const DashboardNavbar = ({ data }) => {
       setLoadingPrev(true);
       try {
         const nextPage = pagination.currentPage - 1;
-        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
+        const response = await axios.get(`${apiUrl}/api/direct/${data.userId}?page=${nextPage}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,
@@ -189,7 +190,7 @@ const DashboardNavbar = ({ data }) => {
       setLoadingNext(true);
       try {
         const nextPage = pagination.currentPage + 1;
-        const response = await axios.get(`https://piserver-ljd1.onrender.com/api/direct/${data.userId}?page=${nextPage}`);
+        const response = await axios.get(`${apiUrl}/api/direct/${data.userId}?page=${nextPage}`);
         setSponsors(response.data.data);
         setPagination({
           currentPage: response.data.currentPage,

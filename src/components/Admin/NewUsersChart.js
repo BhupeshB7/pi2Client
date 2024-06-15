@@ -6,11 +6,11 @@ import { Container } from 'react-bootstrap';
 
 const NewUsersChart = () => {
   const [chartData, setChartData] = useState([]);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://piserver-ljd1.onrender.com/api/users/new/users-created');
+        const response = await axios.get(`${apiUrl}/api/users/new/users-created`);
         setChartData(response.data);
       } catch (error) {
         console.error(error);

@@ -6,6 +6,7 @@ const  DailyIncomeReset = () => {
   const [isReset, setIsReset] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
   const resetDailyIncome = async () => {
     const resetConfirm = window.confirm(
       "Are you sure you want to reset daily income?"
@@ -14,7 +15,7 @@ const  DailyIncomeReset = () => {
       try {
         setIsReset(true);
         const response = await axios.put(
-          "https://piserver-ljd1.onrender.com/api/task/resetDailyIncome"
+          `${apiUrl}/api/dailyIncome/reset`
         );
         setSuccessMessage(response.data.message); // Setting success message
         setErrorMessage("");

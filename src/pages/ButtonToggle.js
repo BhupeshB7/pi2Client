@@ -4,10 +4,10 @@ import { Button } from 'react-bootstrap';
 
 const ButtonToggle = () => {
   const [isActive, setIsActive] = useState(false);
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchButtonState = async () => {
-      const response = await axios.get('https://piserver-ljd1.onrender.com/api/notice/button');
+      const response = await axios.get(`${apiUrl}/api/notice/button`);
       setIsActive(response.data.active);
     };
 
@@ -15,7 +15,7 @@ const ButtonToggle = () => {
   }, []);
 
   const handleButtonClick = async () => {
-    const response = await axios.post('https://piserver-ljd1.onrender.com/api/notice/button/toggle');
+    const response = await axios.post(`${apiUrl}/api/notice/button`, { active: !isActive });
     const newIsActive = !isActive;
   
     // Assuming the response contains the updated button information

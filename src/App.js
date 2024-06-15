@@ -55,10 +55,10 @@ function App() {
   
   const [token, setToken] = useState("");
   const [contactInfoList, setContactInfoList] = useState([]);
-
+  const apiUrl = process.env.REACT_APP_API_URL
   useEffect(() => {
     // Fetch contact info details on component mount
-    axios.get('https://piserver-ljd1.onrender.com/api/contactInfo').then((response) => setContactInfoList(response.data));
+    axios.get(`${apiUrl}/api/contactInfo`).then((response) => setContactInfoList(response.data));
   }, []);
 
   useEffect(() => {

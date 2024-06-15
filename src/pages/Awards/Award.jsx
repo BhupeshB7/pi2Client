@@ -16,11 +16,12 @@ const Award = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const apiUrl = process.env.REACT_APP_API_URL
   const fetchData = async () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://piserver-ljd1.onrender.com/api/gift/gift-rewards/mlm/${userId}?page=${currentPage}`,
+        `${apiUrl}/api/gift/gift-rewards/mlm/${userId}?page=${currentPage}`,
         {
           // params: { userId, page: currentPage, pageSize: 10 },
         }
@@ -44,7 +45,7 @@ const Award = () => {
     try {
       // const response = await fetch("http://localhost:5000/api/gift/checkCode", {
       const response = await fetch(
-        "https://piserver-ljd1.onrender.com/api/gift/checkCode/mlm",
+        `${apiUrl}/api/gift/checkCode/mlm`,
         {
           method: "POST",
           headers: {

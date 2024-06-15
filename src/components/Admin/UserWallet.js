@@ -17,6 +17,7 @@ const UserWallet = () => {
   const [withdrawal, setWithdrawal] = useState('');
   const [rewards, setRewards] = useState('');
  
+  const apiUrl = process.env.REACT_APP_API_URL;
   const getTokenExpireTime = () => {
     const tokenExpire = localStorage.getItem("tokenExpire");
     return tokenExpire ? parseInt(tokenExpire) : null;
@@ -37,7 +38,7 @@ const UserWallet = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://piserver-ljd1.onrender.com/api/users/userWalletUpdating/",
+        `${apiUrl}/api/users/userWalletUpdating/`,
         {
           userId,
           balance,
@@ -57,7 +58,7 @@ const UserWallet = () => {
   const fetchUserAccountDetails = async () => {
     try {
       const response = await axios.get(
-        "https://piserver-ljd1.onrender.com/api/users/sponsors",
+        `${apiUrl}/api/users/sponsors`,
         {
           params: {
             userId: userId,

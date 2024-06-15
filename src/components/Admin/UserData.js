@@ -366,9 +366,10 @@ function UserData() {
   const [confirmationUserId, setConfirmationUserId] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     axios
-      .get("https://piserver-ljd1.onrender.com/api/users/daily-new-users")
+      .get(`${apiUrl}/api/users/daily-new-users`)
       .then((response) => {
         const { count } = response.data;
         setNewUsersCount(count);
@@ -382,7 +383,7 @@ function UserData() {
   const getUsers = async (page = 1) => {
     try {
       const response = await axios.get(
-        `https://piserver-ljd1.onrender.com/api/admin/api/users/account?page=${page}&search=${searchQuery}&itemsPerPage=${itemsPerPage}`
+        `${apiUrl}/api/admin/api/users/account?page=${page}&search=${searchQuery}&itemsPerPage=${itemsPerPage}`
       );
       const { users, totalPages } = response.data;
       setUsers(users);
@@ -410,7 +411,7 @@ function UserData() {
   const handleDeactivate = async (userId) => {
     try {
       const response = await axios.patch(
-        `https://piserver-ljd1.onrender.com/api/active/${userId}/deactivate`
+        `${apiUrl}/api/active/${userId}/deactivate`
       );
       const updatedUser = response.data;
 
@@ -432,7 +433,7 @@ function UserData() {
   const handleActivate = async (userId) => {
     try {
       const response = await axios.patch(
-        `https://piserver-ljd1.onrender.com/api/active/${userId}/activate`
+        `${apiUrl}/api/active/${userId}/activate`
       );
       const updatedUser = response.data;
 
@@ -464,7 +465,7 @@ function UserData() {
     }
   
     try {
-      await axios.delete(`https://piserver-ljd1.onrender.com/api/admin/api/userss/${id}`);
+      await axios.delete(`${apiUrl}/api/admin/api/userss/${id}`);
       setUsers(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -511,8 +512,8 @@ function UserData() {
         users.map(async (user) => {
           if (user._id === confirmationUserId) {
             const endpoint = user.isBlocked
-              ? `https://piserver-ljd1.onrender.com/api/auth/unblock/${confirmationUserId}`
-              : `https://piserver-ljd1.onrender.com/api/auth/block/${confirmationUserId}`;
+              ? `${apiUrl}/api/auth/unblock/${confirmationUserId}`
+              : `${apiUrl}/api/auth/block/${confirmationUserId}`;
 
             try {
               const response = await axios.put(endpoint);

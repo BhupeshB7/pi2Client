@@ -20,13 +20,14 @@ const LoginForm = ({ setToken }) => {
     setCaptchaVerified(verified);
   };
   // const BASE_URl = process.env.BASE_URL
+const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
       const response = await fetch(
         // "http://localhost:5500/api/auth/login",
-        "https://piserver-ljd1.onrender.com/api/auth/login",
+        `${apiUrl}/api/auth/login`,
         // "https://mlm-psi.vercel.app/api/auth/login",
         {
           method: "POST",
