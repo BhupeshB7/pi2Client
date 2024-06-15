@@ -61,6 +61,7 @@ function App() {
     axios.get(`${apiUrl}/api/contactInfo`).then((response) => setContactInfoList(response.data));
   }, []);
 
+  
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
