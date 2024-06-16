@@ -718,13 +718,14 @@ const Dashboard1 = ({ contactInfoList }) => {
     document.body.removeChild(textArea);
   };
 
-  const levelCounts = [1, 10, 60, 300, 800];
+  const levelCounts = [1, 10, 60, 300, 800,1200];
   const levelRanks = [
     "Fresher",
     "Star",
     "Top Leader",
     "Royal Gold",
     "Diamond ",
+    "Duble Diamond"
   ];
 
   const depositFormPage = () => {
