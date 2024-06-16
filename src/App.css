@@ -2238,3 +2238,20 @@ label {
   font-weight: 500;
   font-size: 15px !important;
 }
+.pagination-button{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: rgb(86, 80, 80);
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow:2px 4px 6px  rgba(0, 0, 0, 0.4);
+  margin: 3px;
+}
+.pagination-button.active{
+  color: #33b686;
+}

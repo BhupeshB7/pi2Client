@@ -10,7 +10,7 @@ function AdminDeposit() {
   const [isTokenValid, setIsTokenValid] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showImage, setShowImage] = useState(null);
-const apiUrl= process.env.REACT_API_URL;
+const apiUrl= process.env.REACT_APP_API_URL;
   // Open the modal to display the selected image
   const openImage = (image) => {
     setShowImage(image);
@@ -154,7 +154,7 @@ const apiUrl= process.env.REACT_API_URL;
             </td>
           </tr>
         ))} */}
-        {depositUsers.map((user) => {
+        {depositUsers?.map((user) => {
           // Assuming user.createdAt is a UTC timestamp
           const utcTimestamp = new Date(user.createdAt);
 
@@ -213,8 +213,8 @@ const apiUrl= process.env.REACT_API_URL;
             <img
               src={`https://res.cloudinary.com/dmoukvc5o/image/upload/${showImage.public_id}.jpg`}
               alt="Selected"
-              height='500px'
-              width='300px'
+              height='350px'
+              width='270px'
               className="centered-image"
             />
           </div>
