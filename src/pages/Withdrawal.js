@@ -1,4 +1,3 @@
-
 // import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import spinner from '../assets/spinner.gif'
@@ -30,7 +29,7 @@
 //       .then(response => setWithdrawalRequest(response.data))
 //       .catch(error => console.log(error));
 //   }, [data.userId]);
-  
+
 //   if (isLoading) {
 //     return <h6 className='text-center' style={{marginTop:'-70px',display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', width:'100%' }}><img src={spinner} alt="spinner" height="90px" width="90px"  style={{display:'flex', justifyContent:'center', alignItems:'center'}}/></h6>;
 //   }
@@ -42,7 +41,6 @@
 // if (!withdrawalRequest) {
 //   return <div>Loading...</div>;
 // }
-
 
 //   return (
 //     <div>
@@ -152,17 +150,11 @@
 
 // export default Withdrawal;
 
-
-
-
-
-
-
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import spinner from '../assets/spinner2.gif'
-import axios from 'axios';
-import api from '../components/Task/Services';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import spinner from "../assets/spinner2.gif";
+import axios from "axios";
+import api from "../components/Task/Services";
 
 function Withdrawal() {
   const [data, setData] = useState([]);
@@ -170,13 +162,13 @@ function Withdrawal() {
   const [withdrawalRequest, setWithdrawalRequest] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [withdrawalsPerPage] = useState(10); // 10 withdrawals per page
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
-const apiUrl = process.env.REACT_API_API_URL
+  const apiUrl = process.env.REACT_API_API_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get('users/profile', {
+        const response = await api.get("users/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -194,95 +186,159 @@ const apiUrl = process.env.REACT_API_API_URL
 
   useEffect(() => {
     if (data.userId) {
-      api.get(`withdraw/withdrawals/${data.userId}`)
-        .then(response => setWithdrawalRequest(response.data))
-        .catch(error => console.log(error));
+      api
+        .get(`withdraw/withdrawals/${data.userId}`)
+        .then((response) => setWithdrawalRequest(response.data))
+        .catch((error) => console.log(error));
     }
   }, [data.userId]);
 
   const handleDashBoard = () => {
-    navigate('/dashboard');
-  }
+    navigate("/dashboard");
+  };
 
   // Calculate current withdrawals for the current page
   const indexOfLastWithdrawal = currentPage * withdrawalsPerPage;
   const indexOfFirstWithdrawal = indexOfLastWithdrawal - withdrawalsPerPage;
-  const currentWithdrawals = withdrawalRequest.slice(indexOfFirstWithdrawal, indexOfLastWithdrawal);
+  const currentWithdrawals = withdrawalRequest.slice(
+    indexOfFirstWithdrawal,
+    indexOfLastWithdrawal
+  );
 
   // Change page
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   if (isLoading) {
     return (
-      <h6 className='text-center' style={{ marginTop: '-70px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100%' }}>
-        <img src={spinner} alt="spinner" height="90px" width="90px" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
+      <h6
+        className="text-center"
+        style={{
+          marginTop: "-70px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <img
+          src={spinner}
+          alt="spinner"
+          height="90px"
+          width="90px"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
       </h6>
     );
   }
 
   return (
-    <div >
+    <div>
       {token ? (
-        <div style={{minHeight:'100vh',backgroundImage:' linear-gradient(to top, #30cfd0 0%, #330867 100%)', height:'100%'}}>
-          <div className='container'>
+        <div
+          style={{
+            minHeight: "100vh",
+            backgroundImage:
+              " linear-gradient(to top, #30cfd0 0%, #330867 100%)",
+            height: "100%",
+          }}
+        >
+          <div className="container">
             <div>
-              <h6 className='text-secondary p-3'>Welcome, {data.name}</h6>
-              <h6 className='text-center fw-bold text-light'>Withdrawal History...</h6>
-              <div className='container'>
-              <div className="table-responsive">
-                <table className='table table-bordered ' style={{border:'1px solid white'}}>
-                  <thead>
-                    <tr className='text-warning'>
-                      <th>S.No.</th>
-                      <td>User ID</td>
-                      <td>Amount</td>
-                      <td>Transaction No</td>
-                      <td>Account No</td>
-                      <td>ifscCode</td>
-                      {/* <td>Google Pay</td> */}
-                      <td>Status</td>
-                      <td>Date</td>
-                    </tr>
-                  </thead>
-                  <tbody className='text-light'>
-                    {currentWithdrawals.map((request, index) => (
-                      <tr key={index} className='text-light'>
-                        <td>{index + 1}</td>
-                        <td>{request.userId}</td>
-                        <td>{request.amount}</td>
-                        <td>{request.transactionNumber}</td>
-                        <td>{request.accountNo}</td>
-                        <td>{request.ifscCode}</td>
-                        {/* <td>{request.GPay}</td> */}
-                        <td>{request.status}</td>
-                        <td>{request.createdAt ? new Date(request.createdAt).toLocaleString() : 'unknown'}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="pagination">
-                {Array.from({ length: Math.ceil(withdrawalRequest.length / withdrawalsPerPage) }, (_, index) => (
-                  <button  className='btn btn-outline-secondary m-1' key={index} onClick={() => handlePageChange(index + 1)}>
-                    {index + 1}
+              <h6 className="text-secondary p-3">Welcome, {data.name}</h6>
+              <h6 className="text-center fw-bold text-light">
+                Withdrawal History...
+              </h6>
+              <div className="container">
+                <div className="table-responsive">
+                  {currentWithdrawals.length > 0 ? (
+                    <table
+                      className="table table-bordered "
+                      style={{ border: "1px solid white" }}
+                    >
+                      <thead>
+                        <tr className="text-warning">
+                          <th>S.No.</th>
+                          <td>User ID</td>
+                          <td>Amount</td>
+                          <td>Transaction No</td>
+                          <td>Account No</td>
+                          <td>ifscCode</td>
+                          {/* <td>Google Pay</td> */}
+                          <td>Status</td>
+                          <td>Date</td>
+                        </tr>
+                      </thead>
+                      <tbody className="text-light">
+                        {currentWithdrawals.map((request, index) => (
+                          <tr key={index} className="text-light">
+                            <td>{index + 1}</td>
+                            <td>{request.userId}</td>
+                            <td>{request.amount}</td>
+                            <td>{request.transactionNumber}</td>
+                            <td>{request.accountNo}</td>
+                            <td>{request.ifscCode}</td>
+                            {/* <td>{request.GPay}</td> */}
+                            <td>{request.status}</td>
+                            <td>
+                              {request.createdAt
+                                ? new Date(request.createdAt).toLocaleString()
+                                : "unknown"}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <h4 className="text-light">No withdrawal history available, please make a withdrawal</h4>
+                  )}
+                </div>
+                <div className="pagination">
+                  {Array.from(
+                    {
+                      length: Math.ceil(
+                        withdrawalRequest.length / withdrawalsPerPage
+                      ),
+                    },
+                    (_, index) => (
+                      <button
+                        className="btn btn-outline-secondary m-1"
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                      >
+                        {index + 1}
+                      </button>
+                    )
+                  )}
+                </div>
+                <div className="container ">
+                  <button
+                    className="btn btn-outline-warning m-3"
+                    onClick={handleDashBoard}
+                  >
+                    DashBoard
                   </button>
-                ))}
-                
+                </div>
               </div>
-              <div className="container ">
-                <button className='btn btn-outline-warning m-3' onClick={handleDashBoard}>DashBoard</button>
-              </div>
-              </div>
-             
-              
-             
             </div>
           </div>
         </div>
       ) : (
         <>
-        <h6 className="text-center text-secondary">Re login to continue...</h6>
-        <Link to="/login" className="text-center text-primary" style={{textDecoration:'underline'}}>Login</Link>
+          <h6 className="text-center text-secondary">
+            Re login to continue...
+          </h6>
+          <Link
+            to="/login"
+            className="text-center text-primary"
+            style={{ textDecoration: "underline" }}
+          >
+            Login
+          </Link>
         </>
       )}
     </div>
