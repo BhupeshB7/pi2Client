@@ -162,6 +162,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import spinner from '../assets/spinner2.gif'
 import axios from 'axios';
+import api from '../components/Task/Services';
 
 function Withdrawal() {
   const [data, setData] = useState([]);
@@ -175,12 +176,12 @@ const apiUrl = process.env.REACT_API_API_URL
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/users/profile`, {
+        const response = await api.get('users/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const result = await response.json();
+        const result = response.data;
         setData(result);
         setIsLoading(false);
       } catch (error) {
@@ -193,7 +194,7 @@ const apiUrl = process.env.REACT_API_API_URL
 
   useEffect(() => {
     if (data.userId) {
-      axios.get(`${apiUrl}/api/withdraw/withdrawals/${data.userId}`)
+      api.get(`withdraw/withdrawals/${data.userId}`)
         .then(response => setWithdrawalRequest(response.data))
         .catch(error => console.log(error));
     }
