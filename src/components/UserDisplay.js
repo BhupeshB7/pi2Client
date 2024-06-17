@@ -42,6 +42,7 @@ import Award from "../pages/Awards/Award";
 import Blocked from "./Dashboard/Blocked";
 import DashboardNavbar from "./Dashboard/DashoardNavbar";
 import BottomMenu from "./Dashboard/BottomMenu";
+import api from "./Task/Services";
 const getTokenExpireTime = () => {
   const tokenExpire = localStorage.getItem("tokenExpire");
   return tokenExpire ? parseInt(tokenExpire) : null;
@@ -174,18 +175,15 @@ const Dashboard1 = ({ contactInfoList }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${apiUrl}/api/users/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const result = await response.json();
-        // const userLevel = getUserLevel(result.level);
-        // setLevel(userLevel);
-        // Store userId in localStorage
+        const response = await api.get('users/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const result = response.data;
+
+        // Store userId and other details in localStorage
         if (result.userId) {
           localStorage.setItem("GamerUserId", result.userId);
           localStorage.setItem("GameAccountName", result.accountHolderName);
@@ -193,6 +191,7 @@ const Dashboard1 = ({ contactInfoList }) => {
           localStorage.setItem("GameAccountNo", result.accountNo);
           localStorage.setItem("GameGPay", result.GPay);
         }
+
         if (result.role) {
           const userrole = result.role;
           // console.log(userrole);
@@ -200,15 +199,17 @@ const Dashboard1 = ({ contactInfoList }) => {
             localStorage.setItem("check", "nfwnwen");
           }
         }
-        setData(result);
 
+        setData(result);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+
     fetchData();
-  }, [token]);
+  }, [ token]);
+
 
   useEffect(() => {
     if (data.userId && data.updatedAt) {
