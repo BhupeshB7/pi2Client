@@ -38,7 +38,7 @@ const Award = () => {
     fetchData(); 
   }, [userId, currentPage]);
   const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+    setCurrentPage(newPaage);
   };
   const handleCheckCode = async () => {
     setLoadingAward(true);

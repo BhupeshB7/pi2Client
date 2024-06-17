@@ -48,6 +48,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
           placeholder='Enter User Id'
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
+          style={{ width: "210px",padding:'5px' }}
         />
         <Button  className='m-1 btn-grad' onClick={fetchData}>Check</Button>
       </div>
