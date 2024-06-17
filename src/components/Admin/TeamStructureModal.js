@@ -51,6 +51,7 @@ const TeamStructureModal = () => {
         placeholder="Enter User ID"
         required // adding the required attribute
         className={!isValid ? "is-invalid" : ""} // Add Bootstrap's is-invalid class when input is not valid
+        style={{width:'280px',padding:'7px'}}
       />
       {!isValid && <div className="invalid-feedback">Please enter a User ID</div>}
       {/* <button className='btn-grad' onClick={fetchTeamStructure}>Check</button> */}
@@ -67,7 +68,7 @@ const TeamStructureModal = () => {
       {/* Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} className=""
             overlayClassName="Overlay">
-              <div className="teamStructure_background">
+              <div className="teamStructure_background admin-teamStructure-modal">
         <Modal.Header closeButton>
           <Modal.Title>TEAM STRUCTURE</Modal.Title>
         </Modal.Header>
