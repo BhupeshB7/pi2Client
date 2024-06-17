@@ -7,6 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Menu from "../components/Dashboard/BottomMenu";
 import { FaExchangeAlt, FaPowerOff, FaUser } from "react-icons/fa";
 import { RxUpdate } from "react-icons/rx";
+import api from "../components/Task/Services";
 function Setting() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -15,25 +16,25 @@ function Setting() {
     localStorage.getItem("token") ? true : false
   );
   const [copied, setCopied] = useState(false);
-  const apiUrl = process.env.REACT_API_API_URL 
   //for navigate user
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${apiUrl}/api/users/profile`,
-        {
+      try {
+        const response = await api.get('users/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      const result = await response.json();
-      console.log(result); // check the response data
-      setData(result);
-      setIsLoading(false);
+        });
+        // console.log(response.data); 
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchData();
-  }, [token]);
+  }, [ token]);
 
   const referralLink = `https://powerfullindia.com/v2/register?ref=${data.userId}`;
   const handleCopy = () => {

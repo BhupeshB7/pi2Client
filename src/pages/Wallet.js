@@ -6,6 +6,8 @@ import { RiTeamFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import TransferForm from "./TransferForm";
 import Menu from "../components/Dashboard/BottomMenu";
+import axios from "axios";
+import api from "../components/Task/Services";
 function Setting() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,21 +16,22 @@ function Setting() {
   //for navigate user
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${apiUrl}/api/users/profile`,
-        {
+      try {
+        const response = await api.get('users/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      const result = await response.json();
-      console.log(result); // check the response data
-      setData(result);
-      setIsLoading(false);
+        });
+        console.log(response.data); // check the response data
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchData();
-  }, [token]);
+  }, [ token]);
   if (isLoading) {
     return (
       <h6

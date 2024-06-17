@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import spinner from "../assets/spinner2.gif";
 import { Button, Container } from "react-bootstrap";
 import Background from "../components/Home/Background";
+import api from "../components/Task/Services";
 
 const ProfileUpdate = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,30 +39,24 @@ const ProfileUpdate = () => {
     }
   }, []);
 const apiUrl = process.env.REACT_APP_API_URL;
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${apiUrl}/api/users/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(response.data); // check the response data
-        setProfileData(response.data);
-        setIsDetailsUpdatedOnServer(response.data.detailsUpdated || false);
-
-        setUpdateCount(response.data.updateCount || 0);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching profile data:", error);
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [token]);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await api.get('users/profile', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data); // check the response data
+      setProfileData(response.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  fetchData();
+}, [ token]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -89,8 +84,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
     }
     try {
       // Make API call to update profile using profileData state
-      const response = await axios.post(
-        `${apiUrl}/api/users/profileUpdate`,
+      const response = await api.post(
+        'users/profileUpdate',
         profileData,
         {
           headers: {

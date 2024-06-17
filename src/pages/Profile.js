@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import spinner from "../assets/spinner2.gif";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import api from "../components/Task/Services";
 function Profile() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -11,27 +12,22 @@ function Profile() {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${apiUrl}/api/users/profile`,
-        {
+      try {
+        const response = await api.get('users/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      const result = await response.json();
-      console.log(result); // check the response data
-      if (result.role) {
-        const userrole = result.role;
-        if (userrole === "admin") {
-          localStorage.setItem("check", "nfwnwen");
-        }
+        });
+        console.log(response.data); // check the response data
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      } finally {
+        setIsLoading(false);
       }
-      setData(result);
-      setIsLoading(false);
     };
     fetchData();
-  }, [token]);
+  }, [ token]);
 
   if (isLoading) {
     return (
