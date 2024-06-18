@@ -12,7 +12,7 @@ const AdminGift = ({ title, endpoint }) => {
   const handleGenerateCode = async () => {
     try {
       // gift/generateCode
-      const response = await api.get(`${endpoint}`, {
+      const response = await api.get(`/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
