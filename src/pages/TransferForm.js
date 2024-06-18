@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import axios from "axios";
 import Button from "../components/Home/Button";
 import { FaSearch } from "react-icons/fa";
+import api from "../components/Task/Services";
 const TransferForm = ({ sourceUserId }) => {
   const [targetUserId, setTargetUserId] = useState("");
   const [amount, setAmount] = useState("");
@@ -19,9 +20,9 @@ const apiUrl = process.env.REACT_API_API_URL
       return;
     }
 
-    axios
+    api
       .get(
-        `${apiUrl}/api/targetTransfer/name/${targetUserId}`
+        `/targetTransfer/name/${targetUserId}`
       )
       .then((response) => {
         if (response.data.name) {
@@ -47,8 +48,8 @@ const apiUrl = process.env.REACT_API_API_URL
     }
     try {
       // Send a request to the backend API
-      const response = await axios.post(
-        `${apiUrl}/api/transferTopupWallet`,
+      const response = await api.post(
+        `/transferTopupWallet`,
         {
           sourceUserId,
           targetUserId,
