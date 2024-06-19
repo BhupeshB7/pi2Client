@@ -49,7 +49,7 @@ import GameBalanceUpdate from './components/Admin/GameBalanceUpdate';
 import GameWithdrawalForm from './pages/GameWithdrawalForm';
 import Hero from './components/Home/Hero';
 // import PrivateRoute from './components/Admin/PrivateRoute';
-
+import { Analytics } from "@vercel/analytics/react"
 function App() {
 
   
@@ -145,6 +145,7 @@ function App() {
           <Route path='/deposithistory' element={<DepsoitHistory/>}/>
           <Route  path="*" element={<Error/>} />
         </Routes>
+        <Analytics/>
       </div>
     </BrowserRouter>
   );
