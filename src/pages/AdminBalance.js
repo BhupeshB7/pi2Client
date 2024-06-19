@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Alert } from 'react-bootstrap';
+import api from '../components/Task/Services';
 
 function AdminBalance() {
   const [userId, setUserId] = useState('');
@@ -13,7 +14,7 @@ function AdminBalance() {
 
   const searchUser = async () => {
     try {
-      const response = await axios.get(`https://piserver-ljd1.onrender.com/api/game/balance/${userId}`);
+      const response = await api.get(`/game/balance/${userId}`);
       setName(response.data.name);
       setIsUpdateDisabled(false);
       setAlert({ show: false, type: '', message: '' }); // Reset alert state

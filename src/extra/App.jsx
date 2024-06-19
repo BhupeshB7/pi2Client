@@ -3,6 +3,7 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import { Button, Form } from 'react-bootstrap';
 import DisplayImage from './DisplayImage';
+import api from '../components/Task/Services';
 // https://piserver-ljd1.onrender.com
 const FileInput = ({userId}) => {
   const [file, setFile] = useState(null);
@@ -44,7 +45,7 @@ const apiUrl = process.env.REACT_APP_API_URL
     formData.append('image', file);
 
     try {
-      const response = await axios.post(`https://piserver-ljd1.onrender.com/api/image/upload/${userId}`, formData, {
+      const response = await api.post(`/image/upload/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
