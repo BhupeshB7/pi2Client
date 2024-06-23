@@ -455,7 +455,7 @@ function UserData() {
   const handleDeleteUser = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if (!confirmDelete) {
-      return; // Exit if the user cancels the confirmation dialog
+      return; 
     }
   
     const securityCode = window.prompt("Please enter the security code:");
@@ -465,7 +465,7 @@ function UserData() {
     }
   
     try {
-      await axios.delete(`${apiUrl}/api/admin/api/userss/${id}`);
+      await axios.delete(`${apiUrl}/api/admin/api/users/${id}`);
       setUsers(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
