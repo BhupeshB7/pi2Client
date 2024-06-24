@@ -23,7 +23,7 @@ const ProfileUpdate = () => {
   const [isDetailsUpdatedOnServer, setIsDetailsUpdatedOnServer] =
     useState(false);
   const [updateCount, setUpdateCount] = useState(0);
-  const [maxUpdateLimit] = useState(4);
+  const [maxUpdateLimit] = useState(5);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +49,7 @@ useEffect(() => {
       });
       console.log(response.data); // check the response data
       setProfileData(response.data);
+      setUpdateCount(response.data.updateCount);
     } catch (error) {
       console.error("Error fetching data: ", error);
     } finally {
@@ -71,11 +72,11 @@ useEffect(() => {
       setIsSubmitting(false);
       return;
     }
-    // if (isDetailsUpdatedOnServer) {
-    //   alert("You have reached your update limit. Cannot update again.");
-    //   setIsSubmitting(false);
-    //   return;
-    // }
+    if (isDetailsUpdatedOnServer) {
+      alert("You have reached your update limit. Cannot update again.");
+      setIsSubmitting(false);
+      return;
+    }
 
     if (updateCount >= maxUpdateLimit) {
       alert("You have reached your update limit. Cannot update again.");
@@ -240,7 +241,7 @@ useEffect(() => {
               </div>
               {/* Add other input fields as needed */}
 
-              {errorMessage && <p>{errorMessage}</p>}
+              {errorMessage && <p className="text-danger p-1">{errorMessage}</p>}
 
               <Button
                 type="submit"
