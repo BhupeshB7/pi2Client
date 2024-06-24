@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import spinner2 from "../assets/spinner2.gif";
 import Captcha from "./Captcha";
 import Background from "./Home/Background";
+import { ca } from "date-fns/locale";
 const LoginForm = ({ setToken }) => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -161,7 +162,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
                   /> */}
 
                 </div>
-                <Captcha onVerification={handleCaptchaVerification}/>
+              {!captchaVerified &&  <Captcha onVerification={handleCaptchaVerification}/>}
                 {captchaVerified && (
                   <>
                   <button

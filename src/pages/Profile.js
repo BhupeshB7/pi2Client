@@ -112,6 +112,10 @@ function Profile() {
                           <td>{data.accountNo}</td>
                         </tr>
                         <tr>
+                          <td>Account Holder Name:</td>
+                          <td>{data.accountHolderName}</td>
+                        </tr>
+                        <tr>
                           <td>IFSC CODE:</td>
                           <td>{data.ifscCode}</td>
                         </tr>
