@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Captcha.css"; // Import CSS file
-
-function Captcha({onVerification}) {
+import { FaCheck } from "react-icons/fa";
+import { BiError } from "react-icons/bi";
+function Captcha({ onVerification }) {
   const [captcha, setCaptcha] = useState("");
   const [inputCaptcha, setInputCaptcha] = useState("");
   const [matchSuccess, setMatchSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     refreshCaptcha();
   }, []);
@@ -33,13 +34,11 @@ const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        `${apiUrl}/captcha/verify`,
-        { userInput: inputCaptcha }
-      );
+      const response = await axios.post(`${apiUrl}/captcha/verify`, {
+        userInput: inputCaptcha,
+      });
 
       if (response.data.success) {
-        
         setMatchSuccess(true);
         setErrorMessage("");
         onVerification(true);
@@ -60,14 +59,18 @@ const apiUrl = process.env.REACT_APP_API_URL;
   };
 
   return (
+    <>
+          {errorMessage && <p className="error-message"><BiError  size={24} color="red" style={{marginRight:"5px"}} />{errorMessage}</p>}
+          {matchSuccess && (
+            <p className="success-message"><FaCheck size={24} color="green" style={{marginRight:"5px"}} /> Captcha Verified successfully!</p>
+          )}
     <div className="captcha-container">
       <div className="captcha-form">
         <div className="captcha-refresh">
           {/* <p className="captcha-code"> RHBRYY88 </p> */}
-          <p className="captcha-code">{captcha}  </p>
+          <p className="captcha-code">{captcha} </p>
           <img
             src="https://cdn-icons-png.flaticon.com/128/3227/3227520.png"
-            
             className="refresh-icon"
             onClick={refreshCaptcha}
           />
@@ -88,11 +91,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
           Verify
         </button>
       </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      {matchSuccess && (
-        <p className="success-message">Captcha Verified successfully!</p>
-      )}
     </div>
+    </>
   );
 }
 
