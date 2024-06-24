@@ -7,6 +7,7 @@ import spinner2 from "../assets/spinner2.gif";
 import Captcha from "./Captcha";
 import Background from "./Home/Background";
 import { ca } from "date-fns/locale";
+import { FaCheck } from "react-icons/fa";
 const LoginForm = ({ setToken }) => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -163,15 +164,15 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
                 </div>
               {!captchaVerified &&  <Captcha onVerification={handleCaptchaVerification}/>}
+              {captchaVerified && (
+                   <p className="success-message m-3"><FaCheck size={24} color="green" style={{margin:"5px"}} /> Captcha Verified successfully!</p>
+                )}
                 {captchaVerified && (
                   <>
                   <button
                     type="submit"
-                    className="btn text-light m-2 mt-3"
-                    style={{
-                      backgroundImage:
-                        "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpF5Q7kZdjUq-gfzOvwIDxu93MNZRCjC3zKMNe2YS2&s')",
-                      letterSpacing: "4px",
+                    className="button-30 m-2 mt-3"
+                    style={{letterSpacing: "4px",
                       transform: "scale(1.03)",
                     }}
                   >
@@ -192,6 +193,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
                 {!captchaVerified && (
                   <h6 className="text-center text-amber-100 m-2">Please verify the captcha first.</h6>
                 )}
+                
                 <Link
                   to={"/v2/register"}
                   style={{ color: "#eee", marginLeft: "8px" }}
