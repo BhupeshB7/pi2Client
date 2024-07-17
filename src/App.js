@@ -178,9 +178,10 @@ import React from 'react'
 
 const App = () => {
   return (
-    <div className='container-fluid bg-slate-50 w-full h-screen p-2 flex flex-col justify-center items-center'>
-      <div className='container shadow  bg-slate-100 p-1 flex flex-col justify-center items-center'>
-          <h1 className='text-4xl font-bold text-slate-800'>500 Internal Server Error</h1>
+    <div className='container-fluid bg-slate-50 w-full h-screen p-3 flex flex-col justify-center items-center'>
+      <div className='container shadow  bg-slate-100 p-2 flex flex-col justify-center items-center'>
+          <h1 className='text-5xl text-center font-bold text-slate-700'>500</h1>
+          <h1 className='text-3xl font-bold text-slate-800'> Internal Server Error</h1>
           <p className='text-xl font-semibold text-slate-800'>Sorry, something went wrong on our end.</p>
       </div>
     </div>
